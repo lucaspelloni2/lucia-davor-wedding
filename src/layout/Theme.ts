@@ -84,5 +84,10 @@ export const GlobalStyle = createGlobalStyle<{
    .aws-sld__wrapper{
       height: 100vh;
    }
+   
+   .aws-btn {
+    --loader-bar-color: blue;
+    --loader-bar-height: 40px;
+    }
 
 `;

@@ -3,12 +3,10 @@ import styled from "styled-components";
 import { FadeInBack } from "../layout/UI/Animations/BounceIn";
 import Gallery from "./Gallery";
 
-
 const Container = styled.div`
   display: flex;
-  align-items: center;
-
- // animation: {FadeInBack} 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  flex-direction: column;
+  animation: ${FadeInBack} 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 `;
 
 type State = {};
@@ -21,9 +19,9 @@ class MyHome extends Component<Props, State> {
 
   render() {
     return (
-      <div>
+      <Container>
         <Gallery />
-      </div>
+      </Container>
     );
   }
 }
