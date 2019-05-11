@@ -4,6 +4,7 @@ import MyHome from "./components/MyHome";
 import Programma from "./components/Programma";
 import Sticky from "react-stickynode";
 import { Header } from "./components/Header";
+import Section from "./components/Section";
 
 const Container = styled.div``;
 
@@ -37,7 +38,9 @@ class App extends Component {
           <Header stickyFixed={this.state.stickyFixed} />
         </Sticky>
         <MyHome />
-        <Programma />
+        <Section id={"programma"} title={"Programma"}>
+          Programma Contenuto
+        </Section>
       </Container>
     );
   }
