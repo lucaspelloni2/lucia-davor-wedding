@@ -85,13 +85,6 @@ export const GlobalStyle = createGlobalStyle<{
    .aws-sld__wrapper{
       height: 100vh;
    }
-   
-   .aws-btn {
-    --loader-bar-color: blue;
-    --loader-bar-height: 40px;
-    }
-    
-  
     
     .aws-sld__content > div {
       z-index: 66;
@@ -100,6 +93,10 @@ export const GlobalStyle = createGlobalStyle<{
     
     .aws-sld__content>img {
         opacity: 0.75;
+    }
+    
+    .sticky-nav-active {
+      background: ${__COLORS.WHITE};
     }
 
 `;
