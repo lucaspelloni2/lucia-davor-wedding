@@ -37,3 +37,14 @@ export const BounceIn = keyframes`
     animation-timing-function: ease-out;
   }
 `;
+
+export const FadeInBack = keyframes`
+ 0% {
+    transform: translateZ(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+`;
