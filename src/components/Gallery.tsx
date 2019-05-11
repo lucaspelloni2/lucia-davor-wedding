@@ -4,14 +4,37 @@ import styled from "styled-components";
 import AwesomeSlider from "react-awesome-slider";
 
 import "react-awesome-slider/dist/styles.css";
+import { __COLORS } from "../layout/Theme";
 
+const Content = styled.div`
+  z-index: 100;
+`;
+
+const Title = styled.h1`
+  color: ${__COLORS.PRIMARY};
+  font-size: calc(6rem + 2vmin);
+  margin-top: -2rem;
+  margin-bottom: 0;
+  font-weight: bold;
+`;
+
+const SubTitle = styled.h3`
+  color: ${__COLORS.FOURTH};
+  font-size: calc(2rem + 2vmin);
+  margin-top: 0;
+`;
+
+type Props = {
+  autoPlay: boolean;
+};
 type State = {
   selected: number;
   intervalId: number;
   interval: number;
   totalImages: number;
 };
-class Gallery extends Component<{}, State> {
+
+class Gallery extends Component<Props, State> {
   state = {
     selected: 0,
     intervalId: 0,
@@ -40,15 +63,24 @@ class Gallery extends Component<{}, State> {
         infinite={true}
         selected={this.state.selected}
         onFirstMount={() => {
-          this.startTimer();
+          if (this.props.autoPlay) {
+            this.startTimer();
+          }
         }}
         onTransitionEnd={(ref: any) => {
-          let index = ref.currentIndex;
-          this.setState({ selected: index });
+          if (this.props.autoPlay) {
+            let index = ref.currentIndex;
+            this.setState({ selected: index });
+          }
         }}
       >
+        <div data-src="assets/images/2.jpg">
+          <Content>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>Lorem Ipsum Lorem Lorem Ipsum Lorem Lorem</SubTitle>
+          </Content>
+        </div>
         <div data-src="assets/images/1.jpg" />
-        <div data-src="assets/images/2.jpg" />
         <div data-src="assets/images/3.jpg" />
       </AwesomeSlider>
     );

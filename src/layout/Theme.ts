@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
 import { createGlobalStyle, ThemeProviderProps } from "styled-components";
+import { getAlphaColor } from "../helpers/AlphaColor";
 
 type Props = {
   googleUrl: string;
@@ -88,6 +89,17 @@ export const GlobalStyle = createGlobalStyle<{
    .aws-btn {
     --loader-bar-color: blue;
     --loader-bar-height: 40px;
+    }
+    
+  
+    
+    .aws-sld__content > div {
+      z-index: 66;
+     text-align: center;
+    }
+    
+    .aws-sld__content>img {
+        opacity: 0.75;
     }
 
 `;
