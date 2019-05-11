@@ -13,6 +13,7 @@ const Container = styled.div<{ isActive: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${props => (props.isActive ? __COLORS.PRIMARY : __COLORS.WHITE)};
 `;
 type Props = {
   stickyFixed: boolean;
