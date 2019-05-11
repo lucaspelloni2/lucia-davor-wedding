@@ -21,7 +21,8 @@
     "redux-devtools-extension": "latest",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
-    "typescript": "3.4.5"
+    "typescript": "3.4.5",
+    "react-awesome-slider": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
