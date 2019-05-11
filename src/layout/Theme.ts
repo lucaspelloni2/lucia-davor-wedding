@@ -5,18 +5,19 @@ type Props = {
   googleUrl: string;
 };
 export const MainTheme: CSSProperties & Props = {
-  fontFamily: "Gothic A1, sans-serif",
-  googleUrl: "https://fonts.googleapis.com/css?family=Gothic+A1:200,400,700",
+  fontFamily: "Cormorant Garamond, sans-serif",
+  googleUrl:
+    "https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,500,700",
   boxShadow: "0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0,0,0,0.08)"
   // add more general CSS properties here
 };
 
 // Colors Palette https://colorhunt.co/
 export enum __COLORS {
-  PRIMARY = "#f38181",
-  SECONDARY = "#fce38a",
-  TERTRIARY = "#eaffd0",
-  FOURTH = "#95e1d3",
+  PRIMARY = "#ffb4ac",
+  SECONDARY = "#679186",
+  TERTRIARY = "#264e70",
+  FOURTH = "#ffebd3",
   WHITE = "#fff",
   BLACK = "#000"
 }
@@ -75,4 +76,13 @@ export const GlobalStyle = createGlobalStyle<{
     word-break: break-word;
     line-height: 1.4;
   }
+  
+   .aws-sld__bullets{
+      display: none;
+   }
+   
+   .aws-sld__wrapper{
+      height: 100vh;
+   }
+
 `;
