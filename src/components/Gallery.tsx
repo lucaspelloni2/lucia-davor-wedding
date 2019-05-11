@@ -16,7 +16,7 @@ class Gallery extends Component<{}, State> {
     selected: 0,
     intervalId: 0,
     interval: 5000,
-    totalImages: 2
+    totalImages: 3
   };
 
   componentWillUnmount(): void {
@@ -28,21 +28,28 @@ class Gallery extends Component<{}, State> {
     this.setState({ selected });
   }
 
+  startTimer(): void {
+    clearInterval(this.state.intervalId);
+    const intervalId = setInterval(this.timer.bind(this), this.state.interval);
+    this.setState({ intervalId });
+  }
+
   render() {
     return (
       <AwesomeSlider
         infinite={true}
         selected={this.state.selected}
         onFirstMount={() => {
-          const intervalId = setInterval(
-            this.timer.bind(this),
-            this.state.interval
-          );
-          this.setState({ intervalId });
+          this.startTimer();
+        }}
+        onTransitionEnd={(ref: any) => {
+          let index = ref.currentIndex;
+          this.setState({ selected: index });
         }}
       >
         <div data-src="assets/images/1.jpg" />
         <div data-src="assets/images/2.jpg" />
+        <div data-src="assets/images/3.jpg" />
       </AwesomeSlider>
     );
   }
