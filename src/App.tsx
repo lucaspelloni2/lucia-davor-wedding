@@ -8,8 +8,8 @@ import Section from "./components/Section";
 // @ts-ignore
 import Fade from "react-reveal/Fade";
 import Footer from "./components/Footer";
-import { Parallax } from "react-scroll-parallax/cjs";
-import MyImage, { AssetType } from "./views/Figure";
+import SplitSection from "./components/SplitSection";
+import { __COLORS } from "./layout/Theme";
 
 const Container = styled.div``;
 
@@ -43,6 +43,7 @@ class App extends Component {
           <Header stickyFixed={this.state.stickyFixed} />
         </Sticky>
         <MyHome />
+        <SplitSection background={__COLORS.PRIMARY} text={"18 Ottobre 2019"} />
         <Fade left>
           <Section id={"programma"} title={"Programma"}>
             <Programma />

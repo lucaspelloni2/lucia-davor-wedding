@@ -76,7 +76,7 @@ export const Programma = () => {
   return (
     <Container>
       <TimeLineContainer>
-        <SubTitle>Quando?</SubTitle>
+        <SubTitle>Svolgimento</SubTitle>
         <TimeLine>
           <Ball top={0}>
             <BallContent top={0}>
