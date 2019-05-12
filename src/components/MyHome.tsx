@@ -35,7 +35,7 @@ class MyHome extends Component<Props, State> {
   render() {
     return (
       <Container>
-        <Gallery autoPlay={false} />
+        <Gallery autoPlay={true} />
       </Container>
     );
   }

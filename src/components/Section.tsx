@@ -4,6 +4,7 @@ import { Row } from "../layout/Layout";
 
 const Container = styled.div`
   min-height: 300px;
+  margin: 2em 0;
 `;
 
 const Title = styled.h1`

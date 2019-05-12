@@ -6,8 +6,10 @@ import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import { __COLORS } from "../layout/Theme";
 
-const Content = styled.div`
+const Content = styled.div<{ align: string }>`
   z-index: 100;
+  text-align: ${props => props.align};
+  margin: 0 10%;
 `;
 
 const Title = styled.h1`
@@ -16,12 +18,14 @@ const Title = styled.h1`
   margin-top: -2rem;
   margin-bottom: 0;
   font-weight: bold;
+  line-height: 1;
 `;
 
 const SubTitle = styled.h3`
   color: ${__COLORS.FOURTH};
-  font-size: calc(2rem + 2vmin);
+  font-size: calc(2.5rem + 2vmin);
   margin-top: 0;
+  font-weight: bold;
 `;
 
 type Props = {
@@ -38,8 +42,8 @@ class Gallery extends Component<Props, State> {
   state = {
     selected: 0,
     intervalId: 0,
-    interval: 5000,
-    totalImages: 3
+    interval: 3000,
+    totalImages: 7
   };
 
   componentWillUnmount(): void {
@@ -74,14 +78,49 @@ class Gallery extends Component<Props, State> {
           }
         }}
       >
-        <div data-src="assets/images/2.jpg">
-          <Content>
+        <div data-src="assets/images/lucia1.jpg">
+          <Content align={"right"}>
             <Title>Lucia e Davor</Title>
-            <SubTitle>Lorem Ipsum Lorem Lorem Ipsum Lorem Lorem</SubTitle>
+            <SubTitle>18 Ottobre 2019</SubTitle>
           </Content>
         </div>
-        <div data-src="assets/images/1.jpg" />
-        <div data-src="assets/images/3.jpg" />
+        <div data-src="assets/images/lucia2.jpg">
+          <Content align={"left"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
+        <div data-src="assets/images/lucia3.jpg">
+          <Content align={"center"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
+        <div data-src="assets/images/lucia4.jpg">
+          <Content align={"right"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
+
+        <div data-src="assets/images/lucia5.jpg">
+          <Content align={"right"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
+        <div data-src="assets/images/lucia6.jpg">
+          <Content align={"right"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
+        <div data-src="assets/images/lucia7.jpg">
+          <Content align={"center"}>
+            <Title>Lucia e Davor</Title>
+            <SubTitle>18 Ottobre 2019</SubTitle>
+          </Content>
+        </div>
       </AwesomeSlider>
     );
   }

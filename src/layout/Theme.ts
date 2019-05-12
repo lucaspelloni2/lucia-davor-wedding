@@ -87,16 +87,24 @@ export const GlobalStyle = createGlobalStyle<{
    }
     
     .aws-sld__content > div {
-      z-index: 66;
-     text-align: center;
+         z-index: 66;
+         text-align: center;
+         width: 100%;
     }
     
     .aws-sld__content>img {
-        opacity: 0.75;
+        opacity: 0.65;
     }
     
     .sticky-nav-active {
       background: ${__COLORS.WHITE};
     }
+    
+    .aws-sld__controls__arrow-left, .aws-sld__controls__arrow-right {
+      &:before, &:after {
+        background: ${__COLORS.WHITE};
+      }
+    }
+    
 
 `;
