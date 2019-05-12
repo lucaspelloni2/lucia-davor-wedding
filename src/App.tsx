@@ -24,20 +24,15 @@ class App extends Component {
     stickyFixed: false
   };
   render() {
-    return (
-      <Container>
-        <Sticky
-          top={0}
-          innerZ={9999}
-          onStateChange={(code: StickyType) => {
+    return <Container>
+        <Sticky top={0} innerZ={9999} onStateChange={(code: StickyType) => {
             if (code.status === 0) {
               this.setState({ stickyFixed: false });
             }
             if (code.status === 2) {
               this.setState({ stickyFixed: true });
             }
-          }}
-        >
+          }}>
           <Header stickyFixed={this.state.stickyFixed} />
         </Sticky>
         <MyHome />
@@ -47,8 +42,7 @@ class App extends Component {
           </Section>
         </Fade>
         <Footer />
-      </Container>
-    );
+      </Container>;
   }
 }
 
