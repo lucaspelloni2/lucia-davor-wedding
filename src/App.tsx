@@ -8,6 +8,8 @@ import Section from "./components/Section";
 // @ts-ignore
 import Fade from "react-reveal/Fade";
 import Footer from "./components/Footer";
+import { Parallax } from "react-scroll-parallax/cjs";
+import MyImage, { AssetType } from "./views/Figure";
 
 const Container = styled.div``;
 
@@ -24,15 +26,20 @@ class App extends Component {
     stickyFixed: false
   };
   render() {
-    return <Container>
-        <Sticky top={0} innerZ={9999} onStateChange={(code: StickyType) => {
+    return (
+      <Container>
+        <Sticky
+          top={0}
+          innerZ={9999}
+          onStateChange={(code: StickyType) => {
             if (code.status === 0) {
               this.setState({ stickyFixed: false });
             }
             if (code.status === 2) {
               this.setState({ stickyFixed: true });
             }
-          }}>
+          }}
+        >
           <Header stickyFixed={this.state.stickyFixed} />
         </Sticky>
         <MyHome />
@@ -41,8 +48,10 @@ class App extends Component {
             <Programma />
           </Section>
         </Fade>
+
         <Footer />
-      </Container>;
+      </Container>
+    );
   }
 }
 

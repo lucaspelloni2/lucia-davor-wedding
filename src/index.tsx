@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { ParallaxProvider } from "react-scroll-parallax";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "styled-components";
@@ -16,7 +17,9 @@ const MyApp = () => {
         <GlobalStyle />
       </ThemeProvider>
       <Provider store={store}>
-        <App />
+        <ParallaxProvider>
+          <App />
+        </ParallaxProvider>
       </Provider>
     </Fragment>
   );

@@ -68,7 +68,7 @@ export const GlobalStyle = createGlobalStyle<{
     font-weight: 100;
     line-height: 1.4;
   }
-  
+ 
   h1 {
    font-size: calc(22.28px + 2vmin);
   }
@@ -76,6 +76,10 @@ export const GlobalStyle = createGlobalStyle<{
   p {
     word-break: break-word;
     line-height: 1.4;
+  }
+  
+  figure {
+    margin:0;
   }
   
    .aws-sld__bullets{

@@ -5,6 +5,7 @@ import AwesomeSlider from "react-awesome-slider";
 
 import "react-awesome-slider/dist/styles.css";
 import { __COLORS } from "../layout/Theme";
+import { Parallax } from "react-scroll-parallax/cjs";
 
 const Content = styled.div<{ align: string }>`
   z-index: 100;
@@ -79,47 +80,63 @@ class Gallery extends Component<Props, State> {
         }}
       >
         <div data-src="assets/images/lucia1.jpg">
-          <Content align={"right"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"right"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+            s
+          </Parallax>
         </div>
+
         <div data-src="assets/images/lucia2.jpg">
-          <Content align={"left"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"left"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
         <div data-src="assets/images/lucia3.jpg">
-          <Content align={"center"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"center"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
         <div data-src="assets/images/lucia4.jpg">
-          <Content align={"right"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"right"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
 
         <div data-src="assets/images/lucia5.jpg">
-          <Content align={"right"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"right"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
         <div data-src="assets/images/lucia6.jpg">
-          <Content align={"right"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"right"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
         <div data-src="assets/images/lucia7.jpg">
-          <Content align={"center"}>
-            <Title>Lucia e Davor</Title>
-            <SubTitle>18 Ottobre 2019</SubTitle>
-          </Content>
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"center"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
         </div>
       </AwesomeSlider>
     );
