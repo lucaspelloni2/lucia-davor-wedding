@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@jonny/google-map-react": "latest",
     "@types/color": "^3.0.0",
     "@types/jest": "24.0.12",
     "@types/node": "12.0.0",
@@ -20,13 +21,13 @@
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-scroll-parallax": "^2.1.2",
     "react-stickynode": "latest",
     "redux": "^4.0.1",
     "redux-devtools-extension": "latest",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
-    "typescript": "3.4.5",
-    "@jonny/google-map-react": "latest"
+    "typescript": "3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

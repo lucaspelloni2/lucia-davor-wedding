@@ -8318,6 +8318,13 @@ react-scripts@3.0.0:
   optionalDependencies:
     fsevents "2.0.6"
 
+react-scroll-parallax@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-scroll-parallax/-/react-scroll-parallax-2.1.2.tgz#71d061a37e225125d929b07d629cbced9be1849a"
+  integrity sha512-Sv2/3etQGgpTQnJhb/nMLcTQhz4ILrB1fIIW853XlHyhD0YuGINk66HciW7B1N9zZpGX8sJY37QNoYit9PdTdQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-stickynode@latest:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-stickynode/-/react-stickynode-2.1.1.tgz#1d5160641c72b1a954c872b26130919cb1ce4a78"
