@@ -6,11 +6,14 @@ import AwesomeSlider from "react-awesome-slider";
 import "react-awesome-slider/dist/styles.css";
 import { __COLORS } from "../layout/Theme";
 import { Parallax } from "react-scroll-parallax/cjs";
+import { TrackingIn } from "../layout/UI/Animations/BounceIn";
 
 const Content = styled.div<{ align: string }>`
   z-index: 100;
   text-align: ${props => props.align};
   margin: 0 10%;
+  animation: ${TrackingIn} 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation-delay: 0.3s;
 `;
 
 const Title = styled.h1`

@@ -1035,6 +1035,11 @@
     point-geometry "0.0.0"
     scriptjs "^2.5.7"
 
+"@mapbox/point-geometry@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
+  integrity sha1-ioP5M1x4YO/6Lu7KJUMyqgru2PI=
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1204,6 +1209,13 @@
   integrity sha512-5qqtNia+m2I0/85+pd2YzAXaTyKO8j+svirO5aN+XaQJ5+eZ8nx0jPtEWZLxCi50xwYsX10xUHetFzfb1WEs4Q==
   dependencies:
     "@types/color-convert" "*"
+
+"@types/google-map-react@^0.23.11":
+  version "0.23.11"
+  resolved "https://registry.yarnpkg.com/@types/google-map-react/-/google-map-react-0.23.11.tgz#28421923ac04b02bc1ff47bbcc780b74b46aba01"
+  integrity sha512-w5YcTN5+9RI+tcYT40w9Uo0UUTnsEKHwQSo2/ergLf/ZPUquUuwIH4oucdrRHs9IKkQugBm3cfT2gjny0YCWXQ==
+  dependencies:
+    "@types/react" "*"
 
 "@types/history@*":
   version "4.7.2"
@@ -4451,6 +4463,15 @@ globby@^6.1.0:
     object-assign "^4.0.1"
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
+
+google-map-react@latest:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/google-map-react/-/google-map-react-1.1.4.tgz#ebf649b3cb985c645a0b7a05eb4e1c3f80482c80"
+  integrity sha512-+XcOu7QrRrlDa7Bk25oVV4FSsvMorAupuBrnDjA28Zz+HE+wEz79igqn+0KCHbemjgEHz51sHk0wm+IodvLoMg==
+  dependencies:
+    "@mapbox/point-geometry" "^0.1.0"
+    eventemitter3 "^1.1.0"
+    scriptjs "^2.5.7"
 
 google-maps-infobox@^2.0.0:
   version "2.0.0"

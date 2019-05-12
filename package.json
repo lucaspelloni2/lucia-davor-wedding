@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^4.3.2",
     "@types/styled-components": "^4.1.14",
     "color": "^3.1.1",
+    "google-map-react": "latest",
     "react": "^16.8.6",
     "react-awesome-slider": "latest",
     "react-dom": "^16.8.6",
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/google-map-react": "^0.23.11",
     "@types/react-stickynode": "^1.4.0"
   }
 }

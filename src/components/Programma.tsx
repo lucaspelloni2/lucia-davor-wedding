@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE } from "../layout/Theme";
-import { getAlphaColor } from "../helpers/AlphaColor";
+import Map from "./Map";
+import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
+import MyImage, { AssetType } from "../views/Figure";
 // @ts-ignore
 
 const Container = styled.div`
   display: flex;
   flex: 1;
+  ${EXTRA_SMALL_DEVICES`
+    flex-direction: column;
+  `};
 `;
 
 const TimeLineContainer = styled.div`
@@ -41,11 +46,21 @@ const BallContent = styled.div<{ top: number }>`
   top: ${props => props.top}%;
   position: absolute;
   margin-top: 3px;
-  margin-left: 2em;
+  margin-left: 3em;
   display: flex;
   align-items: center;
   border: 1px solid ${__GRAY_SCALE._300};
   border-radius: 4px;
+`;
+
+const Image = styled(MyImage)<{ top: number }>`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: ${props => props.top}%;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -20px;
 `;
 
 const BallTime = styled.div`
@@ -79,6 +94,11 @@ export const Programma = () => {
         <SubTitle>Svolgimento</SubTitle>
         <TimeLine>
           <Ball top={0}>
+            <Image
+              assetType={AssetType.IMAGE}
+              source={"municipio.jpg"}
+              top={0}
+            />
             <BallContent top={0}>
               <BallTime>14:00</BallTime>
               <BallDescription>Ritrovo al municipio di Lugano</BallDescription>
@@ -86,6 +106,11 @@ export const Programma = () => {
           </Ball>
 
           <Ball top={20}>
+            <Image
+              assetType={AssetType.IMAGE}
+              source={"parcocian.jpeg"}
+              top={20}
+            />
             <BallContent top={20}>
               <BallTime>16:00</BallTime>
               <BallDescription>
@@ -95,6 +120,7 @@ export const Programma = () => {
           </Ball>
 
           <Ball top={40}>
+            <Image assetType={AssetType.IMAGE} source={"villa.jpg"} top={40} />
             <BallContent top={40}>
               <BallTime>17:00</BallTime>
               <BallDescription>
@@ -104,15 +130,17 @@ export const Programma = () => {
           </Ball>
 
           <Ball top={60}>
+            <Image assetType={AssetType.IMAGE} source={"villa.jpg"} top={60} />
             <BallContent top={60}>
               <BallTime>18:00</BallTime>
               <BallDescription>
-                Spostamento alla Villa di Castagnola
+                Spostamento alla Villa Castagnola
               </BallDescription>
             </BallContent>
           </Ball>
 
           <Ball top={80}>
+            <Image assetType={AssetType.IMAGE} source={"villa.jpg"} top={80} />
             <BallContent top={80}>
               <BallTime>19:00</BallTime>
               <BallDescription>Cena più discorso accompagnato</BallDescription>
@@ -122,6 +150,7 @@ export const Programma = () => {
       </TimeLineContainer>
       <MapContainer>
         <SubTitle>Dove?</SubTitle>
+        <Map />
       </MapContainer>
     </Container>
   );
