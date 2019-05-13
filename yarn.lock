@@ -1025,16 +1025,6 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/yargs" "^12.0.9"
 
-"@jonny/google-map-react@latest":
-  version "0.24.1"
-  resolved "https://registry.yarnpkg.com/@jonny/google-map-react/-/google-map-react-0.24.1.tgz#4faf43517dcb16b7e39a2f12904cc707ef7e2145"
-  integrity sha512-DVnbb5vcJpwiQoPzc64kKhx/4r+OUqkCFpcOhZ3ylveOltGQ686BP9b+rKxLCLvMOxKhB9gg7VCd6HIQNfZQrA==
-  dependencies:
-    eventemitter3 "^1.1.0"
-    fbjs "^0.8.3"
-    point-geometry "0.0.0"
-    scriptjs "^2.5.7"
-
 "@mapbox/point-geometry@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
@@ -4062,7 +4052,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.3:
+fbjs@^0.8.0, fbjs@^0.8.1:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -7246,11 +7236,6 @@ pnp-webpack-plugin@1.2.1:
   integrity sha512-W6GctK7K2qQiVR+gYSv/Gyt6jwwIH4vwdviFqx+Y2jAtVf5eZyYIDf5Ac2NCDMBiX5yWscBLZElPTsyA1UtVVA==
   dependencies:
     ts-pnp "^1.0.0"
-
-point-geometry@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/point-geometry/-/point-geometry-0.0.0.tgz#6fcbcad7a803b6418247dd6e49c2853c584daff7"
-  integrity sha1-b8vK16gDtkGCR91uScKFPFhNr/c=
 
 portfinder@^1.0.9:
   version "1.0.20"

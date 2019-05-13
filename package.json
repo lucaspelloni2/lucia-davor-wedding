@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@jonny/google-map-react": "latest",
     "@types/color": "^3.0.0",
     "@types/jest": "24.0.12",
     "@types/node": "12.0.0",
