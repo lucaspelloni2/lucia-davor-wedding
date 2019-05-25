@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import SplitSection from "./components/SplitSection";
 import { __COLORS } from "./layout/Theme";
 import ListaNozze from "./components/ListaNozze";
+import { IconTypes } from "./views/Icon";
 
 const Container = styled.div``;
 
@@ -44,7 +45,12 @@ class App extends Component {
           <Header stickyFixed={this.state.stickyFixed} />
         </Sticky>
         <MyHome />
-        <SplitSection background={__COLORS.PRIMARY} text={"18 Ottobre 2019"} />
+        <SplitSection
+          color={__COLORS.TERTRIARY}
+          background={__COLORS.PRIMARY}
+          text={"18 Ottobre 2019"}
+          iconName={IconTypes.WEDDING_DAY}
+        />
         <Fade left>
           <Section id={"programma"} title={"Programma"}>
             <Programma />
@@ -53,7 +59,8 @@ class App extends Component {
         <SplitSection
           background={__COLORS.TERTRIARY}
           color={__COLORS.WHITE}
-          text={"Lista nozze"}
+          text={"Cosa ci piacerebbe"}
+          iconName={IconTypes.WEDDING_LIST}
         />
         <Fade right delay={30}>
           <Section id={"listanozze"} title={"Lista Nozze"}>
