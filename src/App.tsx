@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 import MyHome from "./components/MyHome";
-import { Programma } from "./components/Programma";
+import {Programma} from "./components/Programma";
 import Sticky from "react-stickynode";
-import { Header } from "./components/Header";
+import {Header} from "./components/Header";
 import Section from "./components/Section";
 // @ts-ignore
 import Fade from "react-reveal/Fade";
 import Footer from "./components/Footer";
 import SplitSection from "./components/SplitSection";
-import { __COLORS } from "./layout/Theme";
+import {__COLORS} from "./layout/Theme";
 
 const Container = styled.div``;
 
@@ -49,7 +49,7 @@ class App extends Component {
             <Programma />
           </Section>
         </Fade>
-
+        <SplitSection background={__COLORS.TERTRIARY} color={__COLORS.WHITE} text={"Lista nozze"} />
         <Footer />
       </Container>
     );
