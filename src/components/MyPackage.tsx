@@ -5,6 +5,12 @@ import MyImage from "../views/Figure";
 import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
 
 const Card = styled.div`
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+      0 10px 10px -5px rgba(0, 0, 0, 0.08);
+  }
+  transition: 0.3s ease-in-out all;
   flex: 1 0 26%; /* explanation below */
   display: flex;
   margin: 20px 20px 20px 0;
