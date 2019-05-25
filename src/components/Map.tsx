@@ -32,7 +32,7 @@ class Map extends Component {
     return (
       // Important! Always set the container height explicitly
       <Fade  delay={60}>
-        <div style={{ height: "79%", width: "100%", borderRadius: 8 }}>
+        <div style={{ height: "79%", width: "100%", borderRadius: 8, minHeight: 300}}>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyAKVNh-hY3u16NrHXFfFLeHRa0undnjSJM"

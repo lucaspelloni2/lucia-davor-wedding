@@ -27,7 +27,7 @@ type Props = {
 const SplitSection = ({ background, text, color }: Props) => {
   return (
     <Container background={background}>
-      <Parallax className="splitSection" y={[-30, 30]} tagOuter="h1">
+      <Parallax className="splitSection" y={[-20, 20]} tagOuter="h1">
         <Text color={color}>{text}</Text>
       </Parallax>
     </Container>
