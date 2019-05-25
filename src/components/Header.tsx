@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { __COLORS } from "../layout/Theme";
+import MyIcon, { IconTypes } from "../views/Icon";
+import { EXTRA_SMALL_DEVICES, SMALL_DEVICES } from "../layout/Mobile";
 
 const Container = styled.div<{ isActive: boolean }>`
   height: 80px;
@@ -34,18 +36,51 @@ const NavLink = styled.div`
   cursor: pointer;
   text-transform: uppercase;
 `;
+
+const Desktop = styled.div`
+  ${EXTRA_SMALL_DEVICES`
+    display: none;
+   `};
+  display: flex;
+`;
+
+const Mobile = styled.div`
+  ${EXTRA_SMALL_DEVICES`
+        display: flex;
+    `};
+
+  ${SMALL_DEVICES`
+        display:none;
+    `};
+
+  flex: 1;
+`;
 type Props = {
   stickyFixed: boolean;
 };
 export const Header = ({ stickyFixed }: Props) => {
   return (
     <Container isActive={stickyFixed}>
-      <NavLink>Home</NavLink>
-      <NavLink>Programma</NavLink>
-      <NavLink>Lista nozze</NavLink>
-      <NavLink>Musica</NavLink>
-      <NavLink>About us</NavLink>
-      <NavLink>Gallery (soon)</NavLink>
+      <Desktop>
+        <NavLink>Home</NavLink>
+        <NavLink>Programma</NavLink>
+        <NavLink>Lista nozze</NavLink>
+        <NavLink>Musica</NavLink>
+        <NavLink>About us</NavLink>
+        <NavLink>Gallery (soon)</NavLink>
+      </Desktop>
+      <Mobile>
+        <MyIcon
+          name={IconTypes.BURGER_MENU}
+          color={stickyFixed ? __COLORS.PRIMARY : __COLORS.WHITE}
+          style={{
+            width: 45,
+            marginLeft: "auto",
+            marginRight: 15,
+            cursor: "pointer"
+          }}
+        />
+      </Mobile>
     </Container>
   );
 };

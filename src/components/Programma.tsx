@@ -24,6 +24,9 @@ const TimeLine = styled.div`
   width: 100%;
   border-left: 2px solid ${__GRAY_SCALE._300};
   margin-left: 2px;
+  ${EXTRA_SMALL_DEVICES`
+    margin-left: 15px;
+  `};
 `;
 
 const Ball = styled.div<{ top: number }>`
@@ -73,7 +76,7 @@ const BallDescription = styled.div`
   font-weight: 100;
   padding: 1em;
   border-left: 1px solid ${__COLORS.SECONDARY};
-  font-size: calc(2vmin);
+  font-size: 18px;
 `;
 
 const MapContainer = styled.div`
