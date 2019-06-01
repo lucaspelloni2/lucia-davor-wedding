@@ -36,7 +36,7 @@ const getFakeData = async (): Promise<Package[]> => {
       id: 2,
       thumbnail:
         "https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
-      title: "Cena Romantica per due alle Maldive",
+      title: "Cena Romantica per due",
       totalPrice: 240,
       totalPaid: 100,
       contributors: 1
@@ -60,7 +60,7 @@ const getFakeData = async (): Promise<Package[]> => {
       contributors: 0
     },
     {
-      id: 4,
+      id: 5,
       thumbnail:
         "https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Lorem Ipsum Lorem Ipsum ",
@@ -69,7 +69,7 @@ const getFakeData = async (): Promise<Package[]> => {
       contributors: 4
     },
     {
-      id: 5,
+      id: 6,
       thumbnail:
         "https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Lorem Ipsum Lorem",
