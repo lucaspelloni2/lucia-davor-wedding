@@ -4,6 +4,7 @@ import { Package } from "./ListaNozze";
 import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
 import { __COLORS, __COLORS_ARRAY, __GRAY_SCALE } from "../layout/Theme";
 import MyIcon, { IconTypes } from "../views/Icon";
+import ProgressBar from "../views/ProgressBar";
 
 const Card = styled.div`
   &:hover {
@@ -48,7 +49,7 @@ const InnerCard = styled.div`
 
 const OuterCard = styled.div`
   align-self: center;
-  width: 90%;
+  width: 85%;
   margin-top: 20px;
 `;
 
@@ -143,6 +144,10 @@ export const MyPackage = ({ myPackage }: Props) => {
             </Value>
           </LabelContainer>
         </Labels>
+        <ProgressBar
+          total={myPackage.totalPrice}
+          progress={(myPackage.totalPaid / myPackage.totalPrice) * 100}
+        />
       </OuterCard>
     </Card>
   );
