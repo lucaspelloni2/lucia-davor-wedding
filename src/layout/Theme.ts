@@ -22,6 +22,12 @@ export enum __COLORS {
   WHITE = "#fff",
   BLACK = "#000"
 }
+
+export const __COLORS_ARRAY = [
+  __COLORS.PRIMARY,
+  __COLORS.SECONDARY,
+  __COLORS.TERTRIARY
+];
 export enum __GRAY_SCALE {
   _WHITE = "#fff",
   _100 = "#f6f9fc",

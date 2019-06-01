@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Package } from "./ListaNozze";
 import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
-import { __COLORS } from "../layout/Theme";
+import { __COLORS, __COLORS_ARRAY, __GRAY_SCALE } from "../layout/Theme";
+import MyIcon, { IconTypes } from "../views/Icon";
 
 const Card = styled.div`
   &:hover {
@@ -42,17 +43,22 @@ const InnerCard = styled.div`
   box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.1),
     0 5px 5px -5px rgba(0, 0, 0, 0.01);
   text-align: center;
+  position: relative;
 `;
 
 const OuterCard = styled.div`
   align-self: center;
-  width: 80%;
-  margin-top: 10px;
+  width: 90%;
+  margin-top: 20px;
 `;
 
 const Title = styled.h2`
   font-size: 22px;
-  color: ${__COLORS.SECONDARY};
+  color: ${__COLORS.TERTRIARY};
+  letter-spacing: -0.5px;
+  font-weight: bold;
+  margin-top: -15px;
+  margin-bottom: 8px;
 `;
 
 /*
@@ -65,8 +71,31 @@ const Line = styled.div`
 
 const TotalPrice = styled.h2`
   margin: 0;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+`;
+
+const Label = styled.label`
+  color: ${__GRAY_SCALE._600};
+  font-size: 15px;
+`;
+
+const LabelContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const Labels = styled.div`
+  display: flex;
+`;
+
+const Value = styled.h4`
+  font-size: 17px;
+  color: ${__COLORS.TERTRIARY};
+  margin-top: 5px;
 `;
 
 type Props = {
@@ -78,10 +107,42 @@ export const MyPackage = ({ myPackage }: Props) => {
     <Card>
       <Image src={myPackage.thumbnail} style={{ width: "100%" }} />
       <InnerCard>
+        <MyIcon
+          name={IconTypes.GIFT}
+          style={{ width: 75, height: 75, marginTop: -8 }}
+          color={__COLORS.TERTRIARY}
+        />
         <Title>{myPackage.title}</Title>
       </InnerCard>
       <OuterCard>
-        <TotalPrice>{myPackage.totalPrice} CHF</TotalPrice>
+        <Labels>
+          <LabelContainer>
+            <Label>Prezzo Totale</Label>
+            <Value>{myPackage.totalPrice} CHF</Value>
+          </LabelContainer>
+          <LabelContainer>
+            <Label>Totale Regalato</Label>
+            <Value>
+              {myPackage.totalPaid === 0 ? "-" : myPackage.totalPaid + " CHF"}
+            </Value>
+          </LabelContainer>
+          <LabelContainer>
+            <Label>Partecipanti</Label>
+            <Value>
+              {new Array(myPackage.contributors).fill(0).map((c, i) => {
+                const color = __COLORS_ARRAY[i % __COLORS_ARRAY.length];
+                return (
+                  <MyIcon
+                    key={i}
+                    name={IconTypes.USER}
+                    color={color}
+                    style={{ width: 18 }}
+                  />
+                );
+              })}
+            </Value>
+          </LabelContainer>
+        </Labels>
       </OuterCard>
     </Card>
   );
