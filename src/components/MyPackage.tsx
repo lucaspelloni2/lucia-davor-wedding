@@ -79,6 +79,7 @@ const TotalPrice = styled.h2`
 const Label = styled.label`
   color: ${__GRAY_SCALE._600};
   font-size: 15px;
+  margin-bottom: auto;
 `;
 
 const LabelContainer = styled.div`
