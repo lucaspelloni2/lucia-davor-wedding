@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Package } from "./ListaNozze";
+import { Contributor, Package } from "./ListaNozze";
 import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
 import { __COLORS, __COLORS_ARRAY, __GRAY_SCALE } from "../layout/Theme";
 import MyIcon, { IconTypes } from "../views/Icon";
@@ -105,6 +105,10 @@ type Props = {
 };
 
 export const MyPackage = ({ myPackage }: Props) => {
+  let totalPaid = 0;
+  myPackage.contributors.map((c: Contributor) => {
+      totalPaid += c.contribution;
+  });
   return (
     <Card>
       <Image src={myPackage.thumbnail} style={{ width: "100%" }} />
@@ -125,13 +129,13 @@ export const MyPackage = ({ myPackage }: Props) => {
           <LabelContainer>
             <Label>Totale Regalato</Label>
             <Value>
-              {myPackage.totalPaid === 0 ? "-" : myPackage.totalPaid + " CHF"}
+              {totalPaid === 0 ? "-" : totalPaid + " CHF"}
             </Value>
           </LabelContainer>
           <LabelContainer>
             <Label>Partecipanti</Label>
             <Value>
-              {new Array(myPackage.contributors).fill(0).map((c, i) => {
+              {myPackage.contributors.map((c: Contributor, i: number) => {
                 const color = __COLORS_ARRAY[i % __COLORS_ARRAY.length];
                 return (
                   <MyIcon
@@ -146,9 +150,9 @@ export const MyPackage = ({ myPackage }: Props) => {
           </LabelContainer>
         </Labels>
         <ProgressBar
-          paid={myPackage.totalPaid}
+          paid={totalPaid}
           total={myPackage.totalPrice}
-          progress={(myPackage.totalPaid / myPackage.totalPrice) * 100}
+          progress={(totalPaid / myPackage.totalPrice) * 100}
         />
       </OuterCard>
     </Card>

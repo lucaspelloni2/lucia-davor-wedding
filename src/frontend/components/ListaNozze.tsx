@@ -17,8 +17,13 @@ export type Package = {
   title: string;
   thumbnail: string;
   totalPrice: number; // prezzo totale del pacchetto
-  totalPaid: number; // quanto è stato pagato
-  contributors: number;
+  contributors: Contributor[];
+};
+
+export type Contributor = {
+  name: string;
+  contribution: number;
+  email?: string;
 };
 
 const getFakeData = async (): Promise<Package[]> => {
@@ -29,8 +34,7 @@ const getFakeData = async (): Promise<Package[]> => {
         "https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Volo per le Maldive",
       totalPrice: 1280,
-      totalPaid: 300,
-      contributors: 2
+      contributors: [{ name: "lucas", contribution: 300 }]
     },
     {
       id: 2,
@@ -38,8 +42,10 @@ const getFakeData = async (): Promise<Package[]> => {
         "https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/872831/pexels-photo-872831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Cena Romantica per due",
       totalPrice: 240,
-      totalPaid: 100,
-      contributors: 1
+      contributors: [
+        { name: "lucas", contribution: 10 },
+        { name: "clara", email: "clara.pelloni@gmail.com", contribution: 90 }
+      ]
     },
     {
       id: 3,
@@ -47,8 +53,10 @@ const getFakeData = async (): Promise<Package[]> => {
         "https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Gita Panoramica sopra l'isola",
       totalPrice: 400,
-      totalPaid: 380,
-      contributors: 4
+      contributors: [
+        { name: "david", contribution: 80 },
+        { name: "julia", email: "julia.pelloni@gmail.com", contribution: 300 }
+      ]
     },
     {
       id: 4,
@@ -56,8 +64,7 @@ const getFakeData = async (): Promise<Package[]> => {
         "https://images.pexels.com/photos/1531672/pexels-photo-1531672.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1531672/pexels-photo-1531672.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1531672/pexels-photo-1531672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1531672/pexels-photo-1531672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Massaggio Rilassante",
       totalPrice: 150,
-      totalPaid: 0,
-      contributors: 0
+      contributors: []
     },
     {
       id: 5,
@@ -65,17 +72,21 @@ const getFakeData = async (): Promise<Package[]> => {
         "https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1450354/pexels-photo-1450354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Lorem Ipsum Lorem Ipsum ",
       totalPrice: 400,
-      totalPaid: 380,
-      contributors: 4
+      contributors: [
+        { name: "david", contribution: 300 },
+        { name: "julia", email: "julia.pelloni@gmail.com", contribution: 80 }
+      ]
     },
     {
       id: 6,
       thumbnail:
         "https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&h=650&w=940 940w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260 1260w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w, https://images.pexels.com/photos/1450363/pexels-photo-1450363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260 2520w",
       title: "Lorem Ipsum Lorem",
-      totalPrice: 400,
-      totalPaid: 380,
-      contributors: 4
+      totalPrice: 600,
+      contributors: [
+        { name: "Viola", contribution: 20 },
+        { name: "lucas", contribution: 130 }
+      ]
     }
   ];
 };
