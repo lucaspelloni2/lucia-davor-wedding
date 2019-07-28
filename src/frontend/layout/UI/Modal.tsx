@@ -1,8 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { Component, ReactNode } from "react";
 import styled from "styled-components";
-import { __COLORS } from "../Theme";
+import { __COLORS, __GRAY_SCALE } from "../Theme";
 import { getAlphaColor } from "../../helpers/AlphaColor";
 import { Package } from "../../components/ListaNozze";
+import MyIcon, { IconTypes } from "../../views/Icon";
+import MyImage from "../../views/Figure";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -24,7 +26,7 @@ const Container = styled.div`
   border-radius: 8px;
   background: ${__COLORS.WHITE};
   color: ${__COLORS.TERTRIARY};
-  padding: 20px 40px;
+  padding: 30px 45px;
   display: flex;
   flex-direction: column;
   z-index: 600;
@@ -32,15 +34,21 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  flex: 1;
   display: flex;
+  align-items: center;
   min-height: 60px;
 `;
 
 const Title = styled.h1`
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 24px;
+  color: ${__COLORS.TERTRIARY};
+  font-weight: 100;
+  letter-spacing: -0.5px;
+`;
+
+const Paragraph = styled.p`
+  font-size: 13px;
+  color: ${getAlphaColor(0.8, __COLORS.TERTRIARY)};
 `;
 
 const Close = styled.div`
@@ -50,8 +58,16 @@ const Close = styled.div`
 `;
 
 const Body = styled.div`
-  flex: 4;
+  flex: 6;
+  color: ${__COLORS.TERTRIARY};
   overflow: scroll;
+`;
+
+const Image = styled.img`
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
 `;
 
 const Footer = styled.div`
@@ -65,33 +81,123 @@ type Props = {
   children: ReactNode;
 };
 
-const Modal = (props: Props) => {
-  return (
-    <Parent isOpen={props.isOpen}>
-      <Container>
-        {props.selectedPackage !== null ? (
-          <>
-            <Header>
-              <Title>
-                Pachetto <strong>{props.selectedPackage.title}</strong>
-              </Title>
-              <Close>
-                <div
-                  onClick={() => {
-                    props.close();
-                  }}
-                >
-                  X
-                </div>
-              </Close>
-            </Header>
-            <Body>{props.children}</Body>
-            <Footer>footer</Footer>
-          </>
-        ) : null}
-      </Container>
-    </Parent>
-  );
+type State = {
+  email: string;
+  message: string;
 };
+
+const Row = styled.div`
+  display: flex;
+  margin: 10px 0;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+  font-size: 13px;
+  margin-left: 5px;
+`;
+
+
+const Input = styled.input`
+  &::placeholder {
+    color: ${__GRAY_SCALE._500};
+    font-weight: 100;
+  }
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  color: ${__COLORS.TERTRIARY};
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid ${__GRAY_SCALE._300};
+  margin: 6px 0;
+`;
+
+const TextArea = styled.textarea`
+  &::placeholder {
+    color: ${__GRAY_SCALE._500};
+    font-weight: 100;
+  }
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  color: ${__COLORS.TERTRIARY};
+  padding: 10px;
+    border-radius: 10px;
+  border: 1px solid ${__GRAY_SCALE._300};
+  margin: 6px 0;
+`;
+
+class Modal extends Component<Props, State> {
+  state = {
+    email: "",
+    message: ""
+  };
+  render() {
+    return (
+      <Parent isOpen={this.props.isOpen}>
+        <Container>
+          {this.props.selectedPackage !== null ? (
+            <>
+              <Header>
+                <Image src={this.props.selectedPackage.thumbnail} />
+                <Title>
+                  Regala <strong>{this.props.selectedPackage.title}</strong> a
+                  Lucia e Davor!
+                </Title>
+                <Close>
+                  <div
+                    onClick={() => {
+                      this.props.close();
+                    }}
+                  >
+                    <MyIcon
+                      name={IconTypes.CLOSE}
+                      style={{ width: 18, height: 18 }}
+                    />
+                  </div>
+                </Close>
+              </Header>
+              <Body>
+                <Paragraph>
+                  Come funziona? È davvero semplice: specificate il vostro
+                  indirizzo email che vi servirà da conferma, indicate l'importo
+                  che desiderate regalare a Davor e Lucia e se volete potete
+                  anche aggiungere una messaggio per loro! Quando avete fatto,
+                  cliccate il bottone "Contribuisci al regalo" :) Davor e Lucia
+                  riceveranno una email con il vostro regalo e il vostro
+                  messaggio! I vostri dati non verranno salvati da qualche
+                  mostro marino informatico. Tutto è sicuro :)
+                </Paragraph>
+                <Row>
+                  <Label>Email</Label>
+                  <Input
+                    placeholder="Inserisci il tuo indirizzo Email qui.."
+                    type="email"
+                    onChange={(e: any) => {
+                      this.setState({ email: e.target.value });
+                    }}
+                  />
+                </Row>
+
+                <Row>
+                  <Label>Messaggio</Label>
+                  <TextArea
+                    placeholder="Inserisci il tuo messaggio qui.."
+                    onChange={(e: any) => {
+                      this.setState({ message: e.target.value });
+                    }}
+                  />
+                </Row>
+              </Body>
+              <Footer>footer</Footer>
+            </>
+          ) : null}
+        </Container>
+      </Parent>
+    );
+  }
+}
 
 export default Modal;
