@@ -114,7 +114,7 @@ export const MyPackage = ({ myPackage, onClick }: Props) => {
   });
   return (
     <Card>
-      <Image src={myPackage.thumbnail} style={{ width: "100%" }} />
+      <Image src={myPackage.thumbnail} style={{ width: "100%", height: 235 }} />
       <InnerCard>
         <MyIcon
           name={IconTypes.GIFT}
