@@ -4,7 +4,7 @@ import { __COLORS, __GRAY_SCALE } from "../Theme";
 import { getAlphaColor } from "../../helpers/AlphaColor";
 import { Package } from "../../components/ListaNozze";
 import MyIcon, { IconTypes } from "../../views/Icon";
-import MyImage from "../../views/Figure";
+import MySlider from "./Slider";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -98,7 +98,6 @@ const Label = styled.label`
   margin-left: 5px;
 `;
 
-
 const Input = styled.input`
   &::placeholder {
     color: ${__GRAY_SCALE._500};
@@ -124,7 +123,7 @@ const TextArea = styled.textarea`
   outline: none;
   color: ${__COLORS.TERTRIARY};
   padding: 10px;
-    border-radius: 10px;
+  border-radius: 10px;
   border: 1px solid ${__GRAY_SCALE._300};
   margin: 6px 0;
 `;
@@ -189,6 +188,10 @@ class Modal extends Component<Props, State> {
                       this.setState({ message: e.target.value });
                     }}
                   />
+                </Row>
+                <Row>
+                  <Label>Importo da regalare</Label>
+                  <MySlider />
                 </Row>
               </Body>
               <Footer>footer</Footer>
