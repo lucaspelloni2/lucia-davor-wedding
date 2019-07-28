@@ -29,6 +29,22 @@ const Card = styled.div`
     `};
 `;
 
+const Button = styled.div`
+  padding: 11px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 100;
+  color: ${__COLORS.WHITE};
+  background: ${__COLORS.TERTRIARY};
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 35px 0;
+  align-items: center;
+`;
+
 const Image = styled.img`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -62,20 +78,6 @@ const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
-/*
-const Line = styled.div`
-  margin: 0 40%;
-  height: 2px;
-  background: ${__COLORS.SECONDARY};
-`;
-*/
-
-const TotalPrice = styled.h2`
-  margin: 0;
-  font-size: 32px;
-  text-align: center;
-`;
-
 const Label = styled.label`
   color: ${__GRAY_SCALE._600};
   font-size: 15px;
@@ -102,12 +104,13 @@ const Value = styled.h4`
 
 type Props = {
   myPackage: Package;
+  onClick: (p: Package) => void;
 };
 
-export const MyPackage = ({ myPackage }: Props) => {
+export const MyPackage = ({ myPackage, onClick }: Props) => {
   let totalPaid = 0;
-  myPackage.contributors.map((c: Contributor) => {
-      totalPaid += c.contribution;
+  myPackage.contributors.forEach((c: Contributor) => {
+    totalPaid += c.contribution;
   });
   return (
     <Card>
@@ -123,30 +126,33 @@ export const MyPackage = ({ myPackage }: Props) => {
       <OuterCard>
         <Labels>
           <LabelContainer>
+            <Label>Totale Regalato</Label>
+            <Value>{totalPaid === 0 ? "0 CHF" : totalPaid + " CHF"}</Value>
+          </LabelContainer>
+          <LabelContainer>
             <Label>Prezzo Totale</Label>
             <Value>{myPackage.totalPrice} CHF</Value>
           </LabelContainer>
-          <LabelContainer>
-            <Label>Totale Regalato</Label>
-            <Value>
-              {totalPaid === 0 ? "-" : totalPaid + " CHF"}
-            </Value>
-          </LabelContainer>
+
           <LabelContainer>
             <Label>Partecipanti</Label>
-            <Value>
-              {myPackage.contributors.map((c: Contributor, i: number) => {
-                const color = __COLORS_ARRAY[i % __COLORS_ARRAY.length];
-                return (
-                  <MyIcon
-                    key={i}
-                    name={IconTypes.USER}
-                    color={color}
-                    style={{ width: 18 }}
-                  />
-                );
-              })}
-            </Value>
+            {myPackage.contributors.length === 0 ? (
+              <Value>-</Value>
+            ) : (
+              <Value>
+                {myPackage.contributors.map((c: Contributor, i: number) => {
+                  const color = __COLORS_ARRAY[i % __COLORS_ARRAY.length];
+                  return (
+                    <MyIcon
+                      key={i}
+                      name={IconTypes.USER}
+                      color={color}
+                      style={{ width: 18 }}
+                    />
+                  );
+                })}
+              </Value>
+            )}
           </LabelContainer>
         </Labels>
         <ProgressBar
@@ -154,6 +160,15 @@ export const MyPackage = ({ myPackage }: Props) => {
           total={myPackage.totalPrice}
           progress={(totalPaid / myPackage.totalPrice) * 100}
         />
+        <ButtonContainer>
+          <Button
+            onClick={() => {
+              onClick(myPackage);
+            }}
+          >
+            Contribuisci al regalo!
+          </Button>
+        </ButtonContainer>
       </OuterCard>
     </Card>
   );

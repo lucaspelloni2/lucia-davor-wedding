@@ -10,8 +10,9 @@ import Fade from "react-reveal/Fade";
 import Footer from "./components/Footer";
 import SplitSection from "./components/SplitSection";
 import { __COLORS } from "./layout/Theme";
-import ListaNozze from "./components/ListaNozze";
+import ListaNozze, { Package } from "./components/ListaNozze";
 import { IconTypes } from "./views/Icon";
+import Modal from "./layout/UI/Modal";
 
 const Container = styled.div``;
 
@@ -21,15 +22,26 @@ type StickyType = {
 
 type State = {
   stickyFixed: boolean;
+  selectedPackage: null | Package;
 };
 
 class App extends Component {
   state = {
-    stickyFixed: false
+    stickyFixed: false,
+    selectedPackage: null
   };
   render() {
     return (
       <Container>
+        <Modal
+          isOpen={this.state.selectedPackage !== null}
+          selectedPackage={this.state.selectedPackage}
+          close={() => {
+            this.setState({ selectedPackage: null });
+          }}
+        >
+          asf
+        </Modal>
         <Sticky
           top={0}
           innerZ={9999}
@@ -64,7 +76,11 @@ class App extends Component {
         />
         <Fade right delay={30}>
           <Section id={"listanozze"} title={"Lista Nozze"}>
-            <ListaNozze />
+            <ListaNozze
+              onSelectPackage={(selectedPackage: Package) => {
+                this.setState({ selectedPackage });
+              }}
+            />
           </Section>
         </Fade>
         <Footer />
