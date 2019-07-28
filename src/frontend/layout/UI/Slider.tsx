@@ -1,12 +1,27 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import Slider from "react-rangeslider";
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Flex = styled.div<{ number: number }>`
+  flex: ${props => props.number};
+`;
 
 type State = {
   value: number;
 };
 
-class MySlider extends Component<{}, State> {
+type Props = {
+  min: number;
+  max: number;
+  setValue: (value: number) => void;
+};
+
+class MySlider extends Component<Props, State> {
   state = {
     value: 10
   };
@@ -22,23 +37,30 @@ class MySlider extends Component<{}, State> {
   };
 
   handleChangeComplete = () => {
-    console.log("Change event completed");
+    this.props.setValue(this.state.value);
   };
 
   render() {
     const { value } = this.state;
     return (
-      <div>
-        <Slider
-          min={0}
-          max={100}
-          value={value}
-          onChangeStart={this.handleChangeStart}
-          onChange={this.handleChange}
-          onChangeComplete={this.handleChangeComplete}
-        />
-        <div className="value">{value}</div>
-      </div>
+      <Container>
+        <Flex number={1}>
+          <span>Min. 0</span>
+        </Flex>
+        <Flex number={10}>
+          <Slider
+            min={this.props.min}
+            max={this.props.max}
+            value={value}
+            onChangeStart={this.handleChangeStart}
+            onChange={this.handleChange}
+            onChangeComplete={this.handleChangeComplete}
+          />
+        </Flex>
+        <Flex number={1} style={{ display: "flex" }}>
+          <div style={{ marginLeft: "auto" }}>{this.props.max} Total.</div>
+        </Flex>
+      </Container>
     );
   }
 }

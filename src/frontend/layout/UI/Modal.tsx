@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from "react";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE } from "../Theme";
 import { getAlphaColor } from "../../helpers/AlphaColor";
-import { Package } from "../../components/ListaNozze";
+import { Contributor, Package } from "../../components/ListaNozze";
 import MyIcon, { IconTypes } from "../../views/Icon";
 import MySlider from "./Slider";
 
@@ -72,8 +72,21 @@ const Image = styled.img`
 
 const Footer = styled.div`
   flex: 1;
+  display: flex;
   padding: 5px 0 25px 0;
+  align-self: center;
 `;
+
+const Button = styled.div`
+  padding: 15px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 100;
+
+  color: ${__COLORS.WHITE};
+  background: ${__COLORS.TERTRIARY};
+`;
+
 type Props = {
   isOpen: boolean;
   close: () => void;
@@ -84,6 +97,7 @@ type Props = {
 type State = {
   email: string;
   message: string;
+  contribution: number;
 };
 
 const Row = styled.div`
@@ -131,9 +145,18 @@ const TextArea = styled.textarea`
 class Modal extends Component<Props, State> {
   state = {
     email: "",
-    message: ""
+    message: "",
+    contribution: 10
   };
+
   render() {
+    let totalPaid = 0;
+    if (this.props.selectedPackage !== null) {
+      this.props.selectedPackage.contributors.forEach((c: Contributor) => {
+        totalPaid += c.contribution;
+      });
+    }
+
     return (
       <Parent isOpen={this.props.isOpen}>
         <Container>
@@ -191,10 +214,23 @@ class Modal extends Component<Props, State> {
                 </Row>
                 <Row>
                   <Label>Importo da regalare</Label>
-                  <MySlider />
+                  <div style={{ margin: "0 3px" }}>
+                    <MySlider
+                      setValue={(v: number) => {
+                        this.setState({ contribution: v });
+                      }}
+                      min={0}
+                      max={this.props.selectedPackage.totalPrice - totalPaid}
+                    />
+                  </div>
                 </Row>
               </Body>
-              <Footer>footer</Footer>
+              <Footer>
+                <Button>
+                  Regala a Lucia e Davor{" "}
+                  <strong>{this.state.contribution}</strong> CHF
+                </Button>
+              </Footer>
             </>
           ) : null}
         </Container>

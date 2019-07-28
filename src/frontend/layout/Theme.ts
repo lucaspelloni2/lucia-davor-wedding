@@ -126,7 +126,7 @@ export const GlobalStyle = createGlobalStyle<{
 .rangeslider {
   margin: 20px 0;
   position: relative;
-  background: ${__COLORS.TERTRIARY};
+  background: ${getAlphaColor(0.3, __COLORS.TERTRIARY)};
   -ms-touch-action: none;
   touch-action: none;
 }
@@ -180,7 +180,7 @@ export const GlobalStyle = createGlobalStyle<{
 .rangeslider-horizontal .rangeslider__fill {
   height: 100%;
   background-color: ${__COLORS.PRIMARY};
-  border-radius: 10px;
+     border-radius: 7px;
   top: 0;
 }
 .rangeslider-horizontal .rangeslider__handle {
