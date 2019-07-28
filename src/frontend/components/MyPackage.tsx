@@ -146,6 +146,7 @@ export const MyPackage = ({ myPackage }: Props) => {
           </LabelContainer>
         </Labels>
         <ProgressBar
+          paid={myPackage.totalPaid}
           total={myPackage.totalPrice}
           progress={(myPackage.totalPaid / myPackage.totalPrice) * 100}
         />
