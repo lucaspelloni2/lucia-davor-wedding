@@ -5,6 +5,8 @@ import { getAlphaColor } from "../../helpers/AlphaColor";
 import { Contributor, Package } from "../../components/ListaNozze";
 import MyIcon, { IconTypes } from "../../views/Icon";
 import MySlider from "./Slider";
+import { getDomain } from "../../helpers/Domain";
+import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../../helpers/FetchOptions";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -155,7 +157,6 @@ class Modal extends Component<Props, State> {
     prevState: Readonly<State>,
     snapshot?: any
   ): void {
-    console.log(this.props.selectedPackage);
     if (
       this.props.selectedPackage !== null &&
       prevProps.selectedPackage !== this.props.selectedPackage
@@ -174,7 +175,32 @@ class Modal extends Component<Props, State> {
     }
   }
 
-  sendContribution() {}
+  sendContribution() {
+    // TODO: validation!!
+    if (this.props.selectedPackage !== null) {
+      fetch(
+        `${getDomain()}/api/packages/contributor?id=${
+          this.props.selectedPackage._id
+        }`,
+        HTTP_OPTIONS(
+          PROTOCOL_METHOD.POST,
+          JSON.stringify({
+            email: this.state.email,
+            message: this.state.message,
+            contribution: this.state.contribution
+          })
+        )
+      )
+        .then(r => r.json())
+        .then(response => {
+          if (response.success) {
+            console.log("success", response);
+          } else {
+            alert(String(response.error));
+          }
+        });
+    }
+  }
 
   render() {
     return (
