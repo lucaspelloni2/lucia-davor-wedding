@@ -11,6 +11,10 @@ const Flex = styled.div<{ number: number }>`
   flex: ${props => props.number};
 `;
 
+const Span = styled.span`
+  font-size: 16px;
+`;
+
 type State = {
   value: number;
 };
@@ -18,13 +22,27 @@ type State = {
 type Props = {
   min: number;
   max: number;
+  initialValue: number;
   setValue: (value: number) => void;
 };
 
 class MySlider extends Component<Props, State> {
   state = {
-    value: 10
+    value: 0
   };
+
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+    snapshot?: any
+  ): void {
+    if (
+      this.props.initialValue !== null &&
+      this.props.initialValue !== prevProps.initialValue
+    ) {
+      this.setState({ value: this.props.initialValue });
+    }
+  }
 
   handleChangeStart = () => {
     console.log("Change event started");
@@ -45,7 +63,9 @@ class MySlider extends Component<Props, State> {
     return (
       <Container>
         <Flex number={1}>
-          <span>Min. 0</span>
+          <Span>
+            Min. <strong>0</strong>
+          </Span>
         </Flex>
         <Flex number={10}>
           <Slider
@@ -58,7 +78,11 @@ class MySlider extends Component<Props, State> {
           />
         </Flex>
         <Flex number={1} style={{ display: "flex" }}>
-          <div style={{ marginLeft: "auto" }}>{this.props.max} Total.</div>
+          <div style={{ marginLeft: "auto" }}>
+            <Span>
+              <strong>{this.props.max}</strong> Max.
+            </Span>
+          </div>
         </Flex>
       </Container>
     );

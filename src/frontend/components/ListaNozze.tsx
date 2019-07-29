@@ -24,7 +24,7 @@ export type Package = {
 };
 
 export type Contributor = {
-  name: string;
+  message: string;
   contribution: number;
   email?: string;
 };

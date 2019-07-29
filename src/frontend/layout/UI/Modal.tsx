@@ -91,13 +91,13 @@ type Props = {
   isOpen: boolean;
   close: () => void;
   selectedPackage: Package | null;
-  children: ReactNode;
 };
 
 type State = {
   email: string;
   message: string;
   contribution: number;
+  rest: number;
 };
 
 const Row = styled.div`
@@ -146,17 +146,37 @@ class Modal extends Component<Props, State> {
   state = {
     email: "",
     message: "",
-    contribution: 10
+    contribution: 0,
+    rest: 0
   };
 
-  render() {
-    let totalPaid = 0;
-    if (this.props.selectedPackage !== null) {
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+    snapshot?: any
+  ): void {
+    console.log(this.props.selectedPackage);
+    if (
+      this.props.selectedPackage !== null &&
+      prevProps.selectedPackage !== this.props.selectedPackage
+    ) {
+      let totalPaid = 0;
       this.props.selectedPackage.contributors.forEach((c: Contributor) => {
         totalPaid += c.contribution;
       });
+      console.log(totalPaid);
+      let rest = this.props.selectedPackage.totalPrice - totalPaid;
+      let contribution = Math.round(rest / 2);
+      this.setState({
+        contribution,
+        rest
+      });
     }
+  }
 
+  sendContribution() {}
+
+  render() {
     return (
       <Parent isOpen={this.props.isOpen}>
         <Container>
@@ -216,17 +236,22 @@ class Modal extends Component<Props, State> {
                   <Label>Importo da regalare</Label>
                   <div style={{ margin: "0 3px" }}>
                     <MySlider
+                      initialValue={this.state.contribution}
                       setValue={(v: number) => {
                         this.setState({ contribution: v });
                       }}
                       min={0}
-                      max={this.props.selectedPackage.totalPrice - totalPaid}
+                      max={this.state.rest}
                     />
                   </div>
                 </Row>
               </Body>
               <Footer>
-                <Button>
+                <Button
+                  onClick={() => {
+                    this.sendContribution();
+                  }}
+                >
                   Regala a Lucia e Davor{" "}
                   <strong>{this.state.contribution}</strong> CHF
                 </Button>

@@ -39,9 +39,7 @@ class App extends Component {
           close={() => {
             this.setState({ selectedPackage: null });
           }}
-        >
-          asf
-        </Modal>
+        />
         <Sticky
           top={0}
           innerZ={9999}
