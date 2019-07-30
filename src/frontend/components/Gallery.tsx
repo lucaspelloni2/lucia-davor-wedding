@@ -8,6 +8,8 @@ import { __COLORS } from "../layout/Theme";
 import { Parallax } from "react-scroll-parallax/cjs";
 import { TrackingIn } from "../layout/UI/Animations/BounceIn";
 
+
+
 const Content = styled.div<{ align: string }>`
   z-index: 100;
   text-align: ${props => props.align};
@@ -37,7 +39,7 @@ type Props = {
 };
 type State = {
   selected: number;
-  intervalId: number;
+  intervalId: any;
   interval: number;
   totalImages: number;
 };

@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { MyPackage } from "./MyPackage";
-import { getDomain } from "../helpers/Domain";
-import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../helpers/FetchOptions";
-import Modal from "../layout/UI/Modal";
+
+import { connect } from "react-redux";
+import { RootState } from "../reducers/store";
+import { Dispatch } from "redux";
+
+import { fetchPackages } from "../reducers/packages/actions";
+import { Alert } from "react-native";
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +28,7 @@ export type Package = {
   totalPaid: number;
   rest: number;
   median: number;
+  soldout: boolean;
 };
 
 export type Contributor = {
@@ -32,37 +37,24 @@ export type Contributor = {
   email?: string;
 };
 
-type State = {
-  packages: Package[];
-  error: null | string;
-};
-
 type Props = {
   onSelectPackage: (p: Package) => void;
+  fetchPackages: () => any;
+  packages: Package[];
+  error: string | undefined;
+  loading: boolean;
 };
 
-class ListaNozze extends React.Component<Props, State> {
-  state = {
-    packages: [],
-    error: null
-  };
-
+class ListaNozze extends React.Component<Props, {}> {
   async componentDidMount() {
-    fetch(`${getDomain()}/api/packages`, HTTP_OPTIONS(PROTOCOL_METHOD.GET))
-      .then(r => r.json())
-      .then(response => {
-        if (response.success) {
-          this.setState({ packages: response.data });
-        } else {
-          this.setState({ error: String(response.error) });
-        }
-      });
+    this.props.fetchPackages();
   }
 
   render() {
-    const { packages } = this.state;
+    const { packages, error } = this.props;
     return (
       <Container>
+        {error ? <h1>Bug</h1> : null}
         {packages.length > 0 && (
           <Packages>
             {packages.map((p: Package) => {
@@ -83,4 +75,17 @@ class ListaNozze extends React.Component<Props, State> {
   }
 }
 
-export default ListaNozze;
+export default connect(
+  (state: RootState) => ({
+    packages: state.packages.packages,
+    loading: state.packages.loading,
+    error: state.packages.error
+  }),
+  (dispatch: Dispatch) => {
+    return {
+      fetchPackages: () => {
+        dispatch(fetchPackages());
+      }
+    };
+  }
+)(ListaNozze);

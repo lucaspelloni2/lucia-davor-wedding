@@ -10,8 +10,8 @@ const Container = styled.div<{ progress: number }>`
   border-radius: 15px;
 `;
 
-const Progress = styled.div<{ progress: number }>`
-  background: ${__COLORS.PRIMARY};
+const Progress = styled.div<{ progress: number; soldout: boolean }>`
+  background: ${props => (props.soldout ? __COLORS.SUCCESS : __COLORS.PRIMARY)};
   width: ${props => props.progress}%;
   height: 100%;
   border-radius: 15px;
@@ -36,12 +36,13 @@ type Props = {
   progress: number;
   paid: number;
   total: number;
+  soldout: boolean;
 };
 
-const ProgressBar = ({ progress, paid, total }: Props) => {
+const ProgressBar = ({ progress, paid, total, soldout }: Props) => {
   return (
     <Container progress={progress}>
-      <Progress progress={progress}>
+      <Progress progress={progress} soldout={soldout}>
         <LabelContainer>{paid !== 0 && <Label>{paid}</Label>}</LabelContainer>
       </Progress>
     </Container>

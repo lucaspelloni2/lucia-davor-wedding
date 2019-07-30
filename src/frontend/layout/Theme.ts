@@ -21,6 +21,7 @@ export enum __COLORS {
   FOURTH = "#ffebd3",
   WHITE = "#fff",
   ERROR = "#ff5858",
+  SUCCESS = "#009975",
   BLACK = "#000"
 }
 

@@ -9,6 +9,10 @@ import { getDomain } from "../../helpers/Domain";
 import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../../helpers/FetchOptions";
 // @ts-ignore
 import isEmail from "is-email";
+import { connect } from "react-redux";
+import { RootState } from "../../reducers/store";
+import { Dispatch } from "redux";
+import { fetchPackages } from "../../reducers/packages/actions";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -94,6 +98,7 @@ type Props = {
   isOpen: boolean;
   close: () => void;
   selectedPackage: Package | null;
+  fetchPackages: () => any;
 };
 
 const Row = styled.div`
@@ -204,7 +209,8 @@ class Modal extends Component<Props, State> {
         .then(r => r.json())
         .then(response => {
           if (response.success) {
-              this.props.close();
+            this.props.close();
+            this.props.fetchPackages();
           } else {
             alert(String(response.error));
           }
@@ -307,4 +313,13 @@ class Modal extends Component<Props, State> {
   }
 }
 
-export default Modal;
+export default connect(
+  (state: RootState) => ({}),
+  (dispatch: Dispatch) => {
+    return {
+      fetchPackages: () => {
+        dispatch(fetchPackages());
+      }
+    };
+  }
+)(Modal);

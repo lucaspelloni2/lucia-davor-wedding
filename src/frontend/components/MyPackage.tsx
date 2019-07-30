@@ -6,12 +6,14 @@ import { __COLORS, __COLORS_ARRAY, __GRAY_SCALE } from "../layout/Theme";
 import MyIcon, { IconTypes } from "../views/Icon";
 import ProgressBar from "../views/ProgressBar";
 
-const Card = styled.div`
+const Card = styled.div<{ soldout: boolean }>`
   &:hover {
     transform: scale(1.01);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
       0 10px 10px -5px rgba(0, 0, 0, 0.08);
   }
+
+  pointer-events: ${props => (props.soldout ? "none" : "inherit")};
   transition: 0.3s ease-in-out all;
   flex: 1 0 26%; /* explanation below */
   display: flex;
@@ -50,10 +52,10 @@ const Image = styled.img`
   border-top-left-radius: 10px;
 `;
 
-const InnerCard = styled.div`
+const InnerCard = styled.div<{ soldout: boolean }>`
   width: 80%;
   background: #fff;
-  padding: 12px;
+  padding: ${props => (props.soldout ? 0 : 12)}px;
   align-self: center;
   margin-top: -10%;
   border-radius: 5px;
@@ -63,14 +65,15 @@ const InnerCard = styled.div`
   position: relative;
 `;
 
-const OuterCard = styled.div`
+const OuterCard = styled.div<{ soldout: boolean }>`
+  opacity: ${props => (props.soldout ? 0.4 : 1)};
   align-self: center;
   width: 85%;
   margin-top: 20px;
 `;
 
-const Title = styled.h2`
-  font-size: 22px;
+const Title = styled.h2<{ soldout: boolean }>`
+  font-size: ${props => (props.soldout ? 16 : 22)}px;
   color: ${__COLORS.TERTRIARY};
   letter-spacing: -0.5px;
   font-weight: bold;
@@ -102,32 +105,58 @@ const Value = styled.h4`
   margin-top: 5px;
 `;
 
+const Soldout = styled.div`
+  color: ${__COLORS.WHITE};
+  border-radius: 2px;
+  background: ${__COLORS.SUCCESS};
+  font-size: 16px;
+  padding: 18px 12px;
+  margin-bottom: 25px;
+`;
+
+const Relative = styled.div`
+  position: relative;
+`;
+
 type Props = {
   myPackage: Package;
   onClick: (p: Package) => void;
 };
 
 export const MyPackage = ({ myPackage, onClick }: Props) => {
-  let totalPaid = 0;
-  myPackage.contributors.forEach((c: Contributor) => {
-    totalPaid += c.contribution;
-  });
   return (
-    <Card>
-      <Image src={myPackage.thumbnail} style={{ width: "100%", height: 235 }} />
-      <InnerCard>
-        <MyIcon
-          name={IconTypes.GIFT}
-          style={{ width: 75, height: 75, marginTop: -8 }}
-          color={__COLORS.TERTRIARY}
+    <Card soldout={myPackage.soldout}>
+      <Relative>
+        <Image
+          src={myPackage.thumbnail}
+          style={{
+            width: "100%",
+            height: 235,
+            opacity: myPackage.soldout ? 0.4 : 1
+          }}
         />
-        <Title>{myPackage.title}</Title>
+      </Relative>
+      <InnerCard soldout={myPackage.soldout}>
+        {myPackage.soldout ? (
+          <Soldout>Il pachetto è soldout!</Soldout>
+        ) : (
+          <MyIcon
+            name={IconTypes.GIFT}
+            style={{ width: 75, height: 75, marginTop: -8 }}
+            color={__COLORS.TERTRIARY}
+          />
+        )}
+        <Title soldout={myPackage.soldout}>{myPackage.title}</Title>
       </InnerCard>
-      <OuterCard>
+      <OuterCard soldout={myPackage.soldout}>
         <Labels>
           <LabelContainer>
             <Label>Totale Regalato</Label>
-            <Value>{totalPaid === 0 ? "0 CHF" : totalPaid + " CHF"}</Value>
+            <Value>
+              {myPackage.totalPaid === 0
+                ? "0 CHF"
+                : myPackage.totalPaid + " CHF"}
+            </Value>
           </LabelContainer>
           <LabelContainer>
             <Label>Prezzo Totale</Label>
@@ -156,9 +185,10 @@ export const MyPackage = ({ myPackage, onClick }: Props) => {
           </LabelContainer>
         </Labels>
         <ProgressBar
-          paid={totalPaid}
+          soldout={myPackage.soldout}
+          paid={myPackage.totalPaid}
           total={myPackage.totalPrice}
-          progress={(totalPaid / myPackage.totalPrice) * 100}
+          progress={(myPackage.totalPaid / myPackage.totalPrice) * 100}
         />
         <ButtonContainer>
           <Button
