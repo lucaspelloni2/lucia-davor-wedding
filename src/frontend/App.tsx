@@ -23,23 +23,30 @@ type StickyType = {
 type State = {
   stickyFixed: boolean;
   selectedPackage: null | Package;
+  isOpen: boolean;
 };
 
-class App extends Component {
+class App extends Component<{}, State> {
   state = {
     stickyFixed: false,
-    selectedPackage: null
+    selectedPackage: null,
+    isOpen: false
   };
+
+  updatePackage(selectedPackage: Package) {
+    this.setState({ selectedPackage, isOpen: true });
+  }
   render() {
     return (
       <Container>
         <Modal
-          isOpen={this.state.selectedPackage !== null}
+          isOpen={this.state.isOpen}
           selectedPackage={this.state.selectedPackage}
           close={() => {
-            this.setState({ selectedPackage: null });
+            this.setState({ isOpen: false });
           }}
         />
+
         <Sticky
           top={0}
           innerZ={9999}
@@ -76,7 +83,7 @@ class App extends Component {
           <Section id={"listanozze"} title={"Lista Nozze"}>
             <ListaNozze
               onSelectPackage={(selectedPackage: Package) => {
-                this.setState({ selectedPackage });
+                this.updatePackage(selectedPackage);
               }}
             />
           </Section>

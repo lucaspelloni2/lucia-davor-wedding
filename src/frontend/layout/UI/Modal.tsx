@@ -84,7 +84,6 @@ const Button = styled.div`
   border-radius: 4px;
   cursor: pointer;
   font-weight: 100;
-
   color: ${__COLORS.WHITE};
   background: ${__COLORS.TERTRIARY};
 `;
@@ -99,7 +98,6 @@ type State = {
   email: string;
   message: string;
   contribution: number;
-  rest: number;
 };
 
 const Row = styled.div`
@@ -148,8 +146,7 @@ class Modal extends Component<Props, State> {
   state = {
     email: "",
     message: "",
-    contribution: 0,
-    rest: 0
+    contribution: 0
   };
 
   componentDidUpdate(
@@ -159,19 +156,9 @@ class Modal extends Component<Props, State> {
   ): void {
     if (
       this.props.selectedPackage !== null &&
-      prevProps.selectedPackage !== this.props.selectedPackage
+      this.props.selectedPackage !== prevProps.selectedPackage
     ) {
-      let totalPaid = 0;
-      this.props.selectedPackage.contributors.forEach((c: Contributor) => {
-        totalPaid += c.contribution;
-      });
-      console.log(totalPaid);
-      let rest = this.props.selectedPackage.totalPrice - totalPaid;
-      let contribution = Math.round(rest / 2);
-      this.setState({
-        contribution,
-        rest
-      });
+      this.setState({ contribution: this.props.selectedPackage.median });
     }
   }
 
@@ -235,8 +222,8 @@ class Modal extends Component<Props, State> {
                   anche aggiungere una messaggio per loro! Quando avete fatto,
                   cliccate il bottone "Contribuisci al regalo" :) Davor e Lucia
                   riceveranno una email con il vostro regalo e il vostro
-                  messaggio! I vostri dati non verranno salvati da qualche
-                  mostro marino informatico. Tutto è sicuro :)
+                  messaggio! I vostri dati non verranno salvati da nessun mostro
+                  marino informatico. Tutto è sicuro :)
                 </Paragraph>
                 <Row>
                   <Label>Email</Label>
@@ -267,7 +254,7 @@ class Modal extends Component<Props, State> {
                         this.setState({ contribution: v });
                       }}
                       min={0}
-                      max={this.state.rest}
+                      max={this.props.selectedPackage.rest}
                     />
                   </div>
                 </Row>

@@ -21,6 +21,9 @@ export type Package = {
   thumbnail: string;
   totalPrice: number; // prezzo totale del pacchetto
   contributors: Contributor[];
+  totalPaid: number;
+  rest: number;
+  median: number;
 };
 
 export type Contributor = {
