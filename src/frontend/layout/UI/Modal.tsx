@@ -7,6 +7,8 @@ import MyIcon, { IconTypes } from "../../views/Icon";
 import MySlider from "./Slider";
 import { getDomain } from "../../helpers/Domain";
 import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../../helpers/FetchOptions";
+// @ts-ignore
+import isEmail from "is-email";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -94,12 +96,6 @@ type Props = {
   selectedPackage: Package | null;
 };
 
-type State = {
-  email: string;
-  message: string;
-  contribution: number;
-};
-
 const Row = styled.div`
   display: flex;
   margin: 10px 0;
@@ -112,7 +108,7 @@ const Label = styled.label`
   margin-left: 5px;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ emailError: boolean }>`
   &::placeholder {
     color: ${__GRAY_SCALE._500};
     font-weight: 100;
@@ -120,10 +116,13 @@ const Input = styled.input`
   font-size: 14px;
   font-family: inherit;
   outline: none;
-  color: ${__COLORS.TERTRIARY};
+  color: ${props => (props.emailError ? __COLORS.ERROR : __COLORS.TERTRIARY)};
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid ${__GRAY_SCALE._300};
+  border: ${props =>
+    props.emailError
+      ? `1px solid ${__COLORS.ERROR}`
+      : `1px solid ${__GRAY_SCALE._300}`};
   margin: 6px 0;
 `;
 
@@ -142,9 +141,22 @@ const TextArea = styled.textarea`
   margin: 6px 0;
 `;
 
+const Error = styled.span`
+  font-weight: bold;
+  font-size: 12px;
+  color: ${__COLORS.ERROR};
+  margin-bottom: 10px;
+`;
+type State = {
+  email: string;
+  message: string;
+  contribution: number;
+  emailError: string | null;
+};
 class Modal extends Component<Props, State> {
   state = {
     email: "",
+    emailError: null,
     message: "",
     contribution: 0
   };
@@ -162,9 +174,20 @@ class Modal extends Component<Props, State> {
     }
   }
 
+  areFieldsValid() {
+    if (!isEmail(this.state.email)) {
+      this.setState({
+        emailError:
+          "Mi pare che l'indirizzo email che hai inserito non sia valido. È vero o lucas è cretino? "
+      });
+      return false;
+    }
+    return true;
+  }
+
   sendContribution() {
     // TODO: validation!!
-    if (this.props.selectedPackage !== null) {
+    if (this.props.selectedPackage !== null && this.areFieldsValid()) {
       fetch(
         `${getDomain()}/api/packages/contributor?id=${
           this.props.selectedPackage._id
@@ -181,7 +204,7 @@ class Modal extends Component<Props, State> {
         .then(r => r.json())
         .then(response => {
           if (response.success) {
-            console.log("success", response);
+              this.props.close();
           } else {
             alert(String(response.error));
           }
@@ -228,12 +251,19 @@ class Modal extends Component<Props, State> {
                 <Row>
                   <Label>Email</Label>
                   <Input
+                    emailError={this.state.emailError !== null}
                     placeholder="Inserisci il tuo indirizzo Email qui.."
                     type="email"
                     onChange={(e: any) => {
+                      if (this.state.emailError) {
+                        this.setState({ emailError: null });
+                      }
                       this.setState({ email: e.target.value });
                     }}
                   />
+                  {this.state.emailError && (
+                    <Error>{this.state.emailError}</Error>
+                  )}
                 </Row>
 
                 <Row>

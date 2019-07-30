@@ -13,6 +13,7 @@
     "@types/styled-components": "^4.1.14",
     "color": "^3.1.1",
     "google-map-react": "latest",
+    "is-email": "^1.0.0",
     "react": "^16.8.6",
     "react-awesome-slider": "latest",
     "react-dom": "^16.8.6",

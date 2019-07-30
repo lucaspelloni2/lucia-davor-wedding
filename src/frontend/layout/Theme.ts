@@ -20,6 +20,7 @@ export enum __COLORS {
   TERTRIARY = "#264e70",
   FOURTH = "#ffebd3",
   WHITE = "#fff",
+  ERROR = "#ff5858",
   BLACK = "#000"
 }
 
