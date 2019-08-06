@@ -1,9 +1,7 @@
 export const getDomain = () => {
   if (isProduction()) {
-    // TODO: insert prod url
-    return "herokuuuu";
+    return "https://lucia-davor-wedding-backend.herokuapp.com/";
   }
-  // TODO: change this with localhost
   return "http://localhost:8080";
 };
 
