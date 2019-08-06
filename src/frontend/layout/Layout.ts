@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 export const DESKTOP_WIDTH = 1160;

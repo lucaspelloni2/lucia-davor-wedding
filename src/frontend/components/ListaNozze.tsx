@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { MyPackage } from "./MyPackage";
-
 import { connect } from "react-redux";
 import { RootState } from "../reducers/store";
 import { Dispatch } from "redux";
-
 import { fetchPackages } from "../reducers/packages/actions";
-import { Alert } from "react-native";
 
 const Container = styled.div`
   display: flex;

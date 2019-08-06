@@ -1,8 +1,8 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE } from "../Theme";
 import { getAlphaColor } from "../../helpers/AlphaColor";
-import { Contributor, Package } from "../../components/ListaNozze";
+import { Package } from "../../components/ListaNozze";
 import MyIcon, { IconTypes } from "../../views/Icon";
 import MySlider from "./Slider";
 import { getDomain } from "../../helpers/Domain";
