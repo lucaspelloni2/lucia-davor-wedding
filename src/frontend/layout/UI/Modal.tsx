@@ -202,6 +202,15 @@ class Modal extends Component<Props, State> {
     loading: false
   };
 
+  resetModal() {
+    this.setState({
+      email: "",
+      message: "",
+      isContributionCompleted: false,
+      emailError: null
+    });
+  }
+
   componentDidUpdate(
     prevProps: Readonly<Props>,
     prevState: Readonly<State>,
@@ -211,6 +220,7 @@ class Modal extends Component<Props, State> {
       this.props.selectedPackage !== null &&
       this.props.selectedPackage !== prevProps.selectedPackage
     ) {
+      this.resetModal();
       this.setState({ contribution: this.props.selectedPackage.median });
     }
   }
@@ -316,6 +326,7 @@ class Modal extends Component<Props, State> {
                         emailError={this.state.emailError !== null}
                         placeholder="Inserisci il tuo indirizzo Email qui.."
                         type="email"
+                        value={this.state.email}
                         onChange={(e: any) => {
                           if (this.state.emailError) {
                             this.setState({ emailError: null });
@@ -331,6 +342,7 @@ class Modal extends Component<Props, State> {
                     <Row>
                       <Label>Messaggio</Label>
                       <TextArea
+                        value={this.state.message}
                         placeholder="Inserisci il tuo messaggio qui.."
                         onChange={(e: any) => {
                           this.setState({ message: e.target.value });
