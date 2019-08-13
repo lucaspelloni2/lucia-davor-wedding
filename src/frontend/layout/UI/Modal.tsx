@@ -7,12 +7,14 @@ import MyIcon, { IconTypes } from "../../views/Icon";
 import MySlider from "./Slider";
 import { getDomain } from "../../helpers/Domain";
 import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../../helpers/FetchOptions";
+import animationData from "../../layout/UI/Animations/gift.json";
 // @ts-ignore
 import isEmail from "is-email";
 import { connect } from "react-redux";
 import { RootState } from "../../reducers/store";
 import { Dispatch } from "redux";
 import { fetchPackages } from "../../reducers/packages/actions";
+import LottieManager from "../../components/LottieManager";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -52,6 +54,7 @@ const Title = styled.h1`
   color: ${__COLORS.TERTRIARY};
   font-weight: 100;
   letter-spacing: -0.5px;
+  margin: 0 20px 0 9px;
 `;
 
 const Paragraph = styled.p`
@@ -62,7 +65,7 @@ const Paragraph = styled.p`
 const Close = styled.div`
   margin-left: auto;
   margin-right: 12px;
-  margin-top: 13px;
+  margintop: 4px;
 `;
 
 const Body = styled.div`
@@ -92,6 +95,14 @@ const Button = styled.div`
   font-weight: 100;
   color: ${__COLORS.WHITE};
   background: ${__COLORS.TERTRIARY};
+`;
+
+const ContinueShoppingButton = styled(Button)`
+  font-weight: 900;
+  text-align: center;
+  color: ${__COLORS.TERTRIARY};
+  background: ${__COLORS.PRIMARY};
+  font-size: 18px;
 `;
 
 type Props = {
@@ -152,18 +163,35 @@ const Error = styled.span`
   color: ${__COLORS.ERROR};
   margin-bottom: 10px;
 `;
+
+const Lottie = styled.div``;
+
+const ThanksContainer = styled.div`
+  max-width: 500px;
+`;
+
+const SubTitle = styled.h3`
+  margin-top: 0px;
+  color: ${__COLORS.TERTRIARY};
+  text-align: justify;
+  font-size: 16px;
+  font-style: italic;
+`;
+
 type State = {
   email: string;
   message: string;
   contribution: number;
   emailError: string | null;
+  isContributionCompleted: boolean;
 };
 class Modal extends Component<Props, State> {
   state = {
     email: "",
     emailError: null,
     message: "",
-    contribution: 0
+    contribution: 0,
+    isContributionCompleted: false
   };
 
   componentDidUpdate(
@@ -209,7 +237,7 @@ class Modal extends Component<Props, State> {
         .then(r => r.json())
         .then(response => {
           if (response.success) {
-            this.props.close();
+            this.setState({ isContributionCompleted: true });
             this.props.fetchPackages();
           } else {
             alert(String(response.error));
@@ -227,8 +255,11 @@ class Modal extends Component<Props, State> {
               <Header>
                 <Image src={this.props.selectedPackage.thumbnail} />
                 <Title>
-                  Regala <strong>{this.props.selectedPackage.title}</strong> a
-                  Lucia e Davor!
+                  {this.state.isContributionCompleted
+                    ? "Hai regalato"
+                    : "Regala"}{" "}
+                  <strong>{this.props.selectedPackage.title}</strong> a Lucia e
+                  Davor!
                 </Title>
                 <Close>
                   <div
@@ -244,66 +275,105 @@ class Modal extends Component<Props, State> {
                 </Close>
               </Header>
               <Body>
-                <Paragraph>
-                  Come funziona? È davvero semplice: specificate il vostro
-                  indirizzo email che vi servirà da conferma, indicate l'importo
-                  che desiderate regalare a Davor e Lucia e se volete potete
-                  anche aggiungere una messaggio per loro! Quando avete fatto,
-                  cliccate il bottone "Contribuisci al regalo" :) Davor e Lucia
-                  riceveranno una email con il vostro regalo e il vostro
-                  messaggio! I vostri dati non verranno salvati da nessun mostro
-                  marino informatico. Tutto è sicuro :)
-                </Paragraph>
-                <Row>
-                  <Label>Email</Label>
-                  <Input
-                    emailError={this.state.emailError !== null}
-                    placeholder="Inserisci il tuo indirizzo Email qui.."
-                    type="email"
-                    onChange={(e: any) => {
-                      if (this.state.emailError) {
-                        this.setState({ emailError: null });
-                      }
-                      this.setState({ email: e.target.value });
-                    }}
-                  />
-                  {this.state.emailError && (
-                    <Error>{this.state.emailError}</Error>
-                  )}
-                </Row>
-
-                <Row>
-                  <Label>Messaggio</Label>
-                  <TextArea
-                    placeholder="Inserisci il tuo messaggio qui.."
-                    onChange={(e: any) => {
-                      this.setState({ message: e.target.value });
-                    }}
-                  />
-                </Row>
-                <Row>
-                  <Label>Importo da regalare</Label>
-                  <div style={{ margin: "0 3px" }}>
-                    <MySlider
-                      initialValue={this.state.contribution}
-                      setValue={(v: number) => {
-                        this.setState({ contribution: v });
+                {this.state.isContributionCompleted ? (
+                  <Lottie>
+                    <LottieManager
+                      animationData={animationData}
+                      height={330}
+                      width={330}
+                      loop={false}
+                      onComplete={() => {
+                        console.log("completed!");
                       }}
-                      min={0}
-                      max={this.props.selectedPackage.rest}
                     />
-                  </div>
-                </Row>
+                  </Lottie>
+                ) : (
+                  <>
+                    <Paragraph>
+                      Come funziona? È davvero semplice: specificate il vostro
+                      indirizzo email che vi servirà da conferma, indicate
+                      l'importo che desiderate regalare a Davor e Lucia e se
+                      volete potete anche aggiungere una messaggio per loro!
+                      Quando avete fatto, cliccate il bottone "Contribuisci al
+                      regalo" :) Davor e Lucia riceveranno una email con il
+                      vostro regalo e il vostro messaggio! I vostri dati non
+                      verranno salvati da nessun mostro marino informatico.
+                      Tutto è sicuro :)
+                    </Paragraph>
+                    <Row>
+                      <Label>Email</Label>
+                      <Input
+                        emailError={this.state.emailError !== null}
+                        placeholder="Inserisci il tuo indirizzo Email qui.."
+                        type="email"
+                        onChange={(e: any) => {
+                          if (this.state.emailError) {
+                            this.setState({ emailError: null });
+                          }
+                          this.setState({ email: e.target.value });
+                        }}
+                      />
+                      {this.state.emailError && (
+                        <Error>{this.state.emailError}</Error>
+                      )}
+                    </Row>
+
+                    <Row>
+                      <Label>Messaggio</Label>
+                      <TextArea
+                        placeholder="Inserisci il tuo messaggio qui.."
+                        onChange={(e: any) => {
+                          this.setState({ message: e.target.value });
+                        }}
+                      />
+                    </Row>
+                    <Row>
+                      <Label>Importo da regalare</Label>
+                      <div style={{ margin: "0 3px" }}>
+                        <MySlider
+                          initialValue={this.state.contribution}
+                          setValue={(v: number) => {
+                            this.setState({ contribution: v });
+                          }}
+                          min={0}
+                          max={this.props.selectedPackage.rest}
+                        />
+                      </div>
+                    </Row>
+                  </>
+                )}
               </Body>
               <Footer>
-                <Button
-                  onClick={() => {
-                    this.sendContribution();
-                  }}
-                >
-                  Regala a Lucia e Davor{" "}
-                  <strong>{this.state.contribution}</strong> CHF
-                </Button>
+                {this.state.isContributionCompleted ? (
+                  <ThanksContainer>
+                    <Title style={{ margin: "0 20px 0 0px" }}>
+                      Caro <strong>{this.state.email},</strong>
+                    </Title>
+                    <SubTitle>
+                      grazie mille per aver regalato a Lucia questo fantastico
+                      regalo! Al fin di poter versare l'importo di{" "}
+                      <strong>CHF ${this.state.contribution}</strong>, riceverai
+                      una email di conferma a breve (in caso non dovesse
+                      arrivare, controlla nello spam).
+                    </SubTitle>
+                    <ContinueShoppingButton
+                      onClick={() => {
+                        this.props.close();
+                      }}
+                    >
+                      Ti senti generoso? Continua a regalare!
+                    </ContinueShoppingButton>
+                  </ThanksContainer>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      this.sendContribution();
+                    }}
+                  >
+                    Regala a Lucia e Davor{" "}
+                    <strong>{this.state.contribution}</strong> CHF
+                  </Button>
+                )}
               </Footer>
             </>
           ) : null}
