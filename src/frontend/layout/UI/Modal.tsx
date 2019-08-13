@@ -8,6 +8,7 @@ import MySlider from "./Slider";
 import { getDomain } from "../../helpers/Domain";
 import { HTTP_OPTIONS, PROTOCOL_METHOD } from "../../helpers/FetchOptions";
 import animationData from "../../layout/UI/Animations/gift.json";
+import buttonLoading from "../../layout/UI/Animations/buttonLoading.json";
 // @ts-ignore
 import isEmail from "is-email";
 import { connect } from "react-redux";
@@ -94,6 +95,8 @@ const Button = styled.div`
   cursor: pointer;
   font-weight: 100;
   color: ${__COLORS.WHITE};
+  display: flex;
+  align-items: center;
   background: ${__COLORS.TERTRIARY};
 `;
 
@@ -177,6 +180,9 @@ const SubTitle = styled.h3`
   font-size: 16px;
   font-style: italic;
 `;
+const MyLottieManager = styled(LottieManager)`
+  margin: 0px -20px 0 0;
+`;
 
 type State = {
   email: string;
@@ -184,6 +190,7 @@ type State = {
   contribution: number;
   emailError: string | null;
   isContributionCompleted: boolean;
+  loading: boolean;
 };
 class Modal extends Component<Props, State> {
   state = {
@@ -191,7 +198,8 @@ class Modal extends Component<Props, State> {
     emailError: null,
     message: "",
     contribution: 0,
-    isContributionCompleted: false
+    isContributionCompleted: false,
+    loading: false
   };
 
   componentDidUpdate(
@@ -221,6 +229,7 @@ class Modal extends Component<Props, State> {
   sendContribution() {
     // TODO: validation!!
     if (this.props.selectedPackage !== null && this.areFieldsValid()) {
+      this.setState({ loading: true });
       fetch(
         `${getDomain()}/api/packages/contributor?id=${
           this.props.selectedPackage._id
@@ -236,6 +245,7 @@ class Modal extends Component<Props, State> {
       )
         .then(r => r.json())
         .then(response => {
+          this.setState({ loading: false });
           if (response.success) {
             this.setState({ isContributionCompleted: true });
             this.props.fetchPackages();
@@ -371,7 +381,19 @@ class Modal extends Component<Props, State> {
                     }}
                   >
                     Regala a Lucia e Davor{" "}
-                    <strong>{this.state.contribution}</strong> CHF
+                    <strong style={{ margin: "0 4px" }}>
+                      {this.state.contribution}
+                    </strong>{" "}
+                    CHF{" "}
+                    {this.state.loading && (
+                      <MyLottieManager
+                        animationData={buttonLoading}
+                        height={15}
+                        loop={true}
+                        width={40}
+                        onComplete={() => {}}
+                      />
+                    )}
                   </Button>
                 )}
               </Footer>

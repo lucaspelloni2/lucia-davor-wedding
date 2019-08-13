@@ -10,6 +10,7 @@ type Props = {
   width: number;
   isPaused?: boolean;
   onComplete: () => void;
+  className?: string;
 };
 
 class LottieManager extends React.Component<Props, {}> {
@@ -18,6 +19,7 @@ class LottieManager extends React.Component<Props, {}> {
       loop: this.props.loop && true,
       autoplay: this.props.autoplay || true,
       animationData: this.props.animationData,
+      className: this.props.className,
       rendererSettings: {
         preserveAspectRatio: "xMidYMid slice"
       }
