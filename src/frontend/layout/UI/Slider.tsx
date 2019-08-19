@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Slider from "react-rangeslider";
+import { EXTRA_SMALL_DEVICES } from "../Mobile";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
+  ${EXTRA_SMALL_DEVICES`
+        flex-direction: column;
+        align-items: inherit;
+        margin-top: 20px;
+    `};
 `;
 
 const Flex = styled.div<{ number: number }>`
@@ -30,6 +36,10 @@ class MySlider extends Component<Props, State> {
   state = {
     value: 0
   };
+
+  componentDidMount(): void {
+    this.setState({ value: this.props.initialValue });
+  }
 
   componentDidUpdate(
     prevProps: Readonly<Props>,

@@ -16,6 +16,7 @@ import { RootState } from "../../reducers/store";
 import { Dispatch } from "redux";
 import { fetchPackages } from "../../reducers/packages/actions";
 import LottieManager from "../../components/LottieManager";
+import { EXTRA_SMALL_DEVICES } from "../Mobile";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -42,12 +43,21 @@ const Container = styled.div`
   flex-direction: column;
   z-index: 600;
   max-width: 50%;
+  ${EXTRA_SMALL_DEVICES`
+    min-height: 100%;
+    padding: 20px 35px;
+    max-width: 100%;
+    min-width: 100%;
+  `};
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
   min-height: 60px;
+  ${EXTRA_SMALL_DEVICES`
+       flex-direction: column;
+   `};
 `;
 
 const Title = styled.h1`
@@ -56,23 +66,48 @@ const Title = styled.h1`
   font-weight: 100;
   letter-spacing: -0.5px;
   margin: 0 20px 0 9px;
+  ${EXTRA_SMALL_DEVICES`
+    padding: 10px;
+       text-align: center;
+       margin: 0 0 -15px 0;
+   `};
+`;
+
+const CloseIconContainer = styled.div`
+  ${EXTRA_SMALL_DEVICES`
+      background: white;
+      padding: 15px;
+      border-radius: 50%;
+   `};
 `;
 
 const Paragraph = styled.p`
-  font-size: 13px;
+  font-size: 14px;
   color: ${getAlphaColor(0.8, __COLORS.TERTRIARY)};
+  text-align: justify;
+  ${EXTRA_SMALL_DEVICES`
+      margin-bottom: 20px;
+   `};
 `;
 
 const Close = styled.div`
   margin-left: auto;
   margin-right: 12px;
-  margintop: 4px;
+  margin-top: 4px;
+  ${EXTRA_SMALL_DEVICES`
+        position: absolute;
+        right: 5%;
+        top: 4%;
+    `};
 `;
 
 const Body = styled.div`
   flex: 6;
   color: ${__COLORS.TERTRIARY};
   overflow: scroll;
+  ${EXTRA_SMALL_DEVICES`
+        padding: 20px;
+  `};
 `;
 
 const Image = styled.img`
@@ -80,6 +115,14 @@ const Image = styled.img`
   height: 45px;
   margin-right: 10px;
   border-radius: 50%;
+  ${EXTRA_SMALL_DEVICES`
+        margin-right: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 120px;
+        border-radius: 0;
+        margin-bottom: 15px;
+    `};
 `;
 
 const Footer = styled.div`
@@ -87,6 +130,9 @@ const Footer = styled.div`
   display: flex;
   padding: 5px 0 25px 0;
   align-self: center;
+  ${EXTRA_SMALL_DEVICES`
+      padding: 5px 0 40px 0;
+  `};
 `;
 
 const Button = styled.div`
@@ -171,6 +217,9 @@ const Lottie = styled.div``;
 
 const ThanksContainer = styled.div`
   max-width: 500px;
+  ${EXTRA_SMALL_DEVICES`
+        padding: 20px;
+  `};
 `;
 
 const SubTitle = styled.h3`
@@ -180,6 +229,18 @@ const SubTitle = styled.h3`
   font-size: 16px;
   font-style: italic;
 `;
+
+const SliderContainer = styled.div`
+  margin: 0 3px;
+`;
+
+const CaroTitle = styled(Title)`
+  margin: 0 20px 0 0;
+  ${EXTRA_SMALL_DEVICES`
+    margin: 0
+   `};
+`;
+
 const MyLottieManager = styled(LottieManager)`
   margin: 0px -20px 0 0;
 `;
@@ -198,7 +259,7 @@ class Modal extends Component<Props, State> {
     emailError: null,
     message: "",
     contribution: 0,
-    isContributionCompleted: false,
+    isContributionCompleted: true,
     loading: false
   };
 
@@ -282,7 +343,7 @@ class Modal extends Component<Props, State> {
                   Davor!
                 </Title>
                 <Close>
-                  <div
+                  <CloseIconContainer
                     onClick={() => {
                       this.props.close();
                     }}
@@ -291,7 +352,7 @@ class Modal extends Component<Props, State> {
                       name={IconTypes.CLOSE}
                       style={{ width: 18, height: 18 }}
                     />
-                  </div>
+                  </CloseIconContainer>
                 </Close>
               </Header>
               <Body>
@@ -351,16 +412,16 @@ class Modal extends Component<Props, State> {
                     </Row>
                     <Row>
                       <Label>Importo da regalare</Label>
-                      <div style={{ margin: "0 3px" }}>
+                      <SliderContainer>
                         <MySlider
-                          initialValue={this.state.contribution}
+                          initialValue={this.props.selectedPackage.median}
                           setValue={(v: number) => {
                             this.setState({ contribution: v });
                           }}
                           min={0}
                           max={this.props.selectedPackage.rest}
                         />
-                      </div>
+                      </SliderContainer>
                     </Row>
                   </>
                 )}
@@ -368,9 +429,9 @@ class Modal extends Component<Props, State> {
               <Footer>
                 {this.state.isContributionCompleted ? (
                   <ThanksContainer>
-                    <Title style={{ margin: "0 20px 0 0px" }}>
+                    <CaroTitle>
                       Caro <strong>{this.state.email},</strong>
-                    </Title>
+                    </CaroTitle>
                     <SubTitle>
                       grazie mille per aver regalato a Lucia questo fantastico
                       regalo! Al fin di poter versare l'importo di{" "}

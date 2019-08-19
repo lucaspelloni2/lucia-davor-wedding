@@ -28,6 +28,7 @@ const Card = styled.div<{ soldout: boolean }>`
   border-radius: 10px;
   ${EXTRA_SMALL_DEVICES`
     flex: 1 0 30%; 
+     margin: 20px 0 20px 0;
     `};
 `;
 
