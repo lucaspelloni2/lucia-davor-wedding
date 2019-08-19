@@ -13,6 +13,8 @@ import { __COLORS } from "./layout/Theme";
 import ListaNozze, { Package } from "./components/ListaNozze";
 import { IconTypes } from "./views/Icon";
 import Modal from "./layout/UI/Modal";
+import MediaQuery from "react-responsive";
+import { DESKTOP_WIDTH } from "./layout/Layout";
 
 const Container = styled.div``;
 
@@ -73,21 +75,41 @@ class App extends Component<{}, State> {
             <Programma />
           </Section>
         </Fade>
+        <MediaQuery minWidth={DESKTOP_WIDTH}>
+          {matches => {
+            if (matches) {
+              return (
+                <Fade right>
+                  <Section id={"listanozze"} title={"Lista Nozze"}>
+                    <ListaNozze
+                      onSelectPackage={(selectedPackage: Package) => {
+                        this.updatePackage(selectedPackage);
+                      }}
+                    />
+                  </Section>
+                </Fade>
+              );
+            } else {
+              return (
+                <Section id={"listanozze"} title={"Lista Nozze"}>
+                  <ListaNozze
+                    onSelectPackage={(selectedPackage: Package) => {
+                      this.updatePackage(selectedPackage);
+                    }}
+                  />
+                </Section>
+              );
+            }
+          }}
+        </MediaQuery>
+
         <SplitSection
           background={__COLORS.TERTRIARY}
           color={__COLORS.WHITE}
           text={"Cosa ci piacerebbe"}
           iconName={IconTypes.WEDDING_LIST}
         />
-        <Fade right delay={30}>
-          <Section id={"listanozze"} title={"Lista Nozze"}>
-            <ListaNozze
-              onSelectPackage={(selectedPackage: Package) => {
-                this.updatePackage(selectedPackage);
-              }}
-            />
-          </Section>
-        </Fade>
+        <Fade right delay={30} />
         <Footer />
       </Container>
     );
