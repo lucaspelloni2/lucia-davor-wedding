@@ -14,6 +14,7 @@ type Props = {
   assetType: AssetType;
   otherProps?: ImgHTMLAttributes<any>;
   style?: CSSProperties;
+  className?: string;
 };
 
 const getPrefix = (assetType: AssetType) => {

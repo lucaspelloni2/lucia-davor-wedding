@@ -152,6 +152,7 @@ const ContinueShoppingButton = styled(Button)`
   color: ${__COLORS.TERTRIARY};
   background: ${__COLORS.PRIMARY};
   font-size: 18px;
+  justify-content: center;
 `;
 
 type Props = {
@@ -435,7 +436,7 @@ class Modal extends Component<Props, State> {
                     <SubTitle>
                       grazie mille per aver regalato a Lucia questo fantastico
                       regalo! Al fin di poter versare l'importo di{" "}
-                      <strong>CHF ${this.state.contribution}</strong>, riceverai
+                      <strong>CHF {this.state.contribution}</strong>, riceverai
                       una email di conferma a breve (in caso non dovesse
                       arrivare, controlla nello spam).
                     </SubTitle>

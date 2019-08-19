@@ -75,6 +75,12 @@ class App extends Component<{}, State> {
             <Programma />
           </Section>
         </Fade>
+        <SplitSection
+          background={__COLORS.TERTRIARY}
+          color={__COLORS.WHITE}
+          text={"Cosa ci piacerebbe"}
+          iconName={IconTypes.WEDDING_LIST}
+        />
         <MediaQuery minWidth={DESKTOP_WIDTH}>
           {matches => {
             if (matches) {
@@ -103,12 +109,6 @@ class App extends Component<{}, State> {
           }}
         </MediaQuery>
 
-        <SplitSection
-          background={__COLORS.TERTRIARY}
-          color={__COLORS.WHITE}
-          text={"Cosa ci piacerebbe"}
-          iconName={IconTypes.WEDDING_LIST}
-        />
         <Fade right delay={30} />
         <Footer />
       </Container>
