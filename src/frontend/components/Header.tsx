@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { __COLORS } from "../layout/Theme";
 import MyIcon, { IconTypes } from "../views/Icon";
 import { EXTRA_SMALL_DEVICES, SMALL_DEVICES } from "../layout/Mobile";
+// @ts-ignore
+import Scrollchor from "react-scrollchor";
 
 const Container = styled.div<{ isActive: boolean }>`
   height: 80px;
@@ -57,29 +59,56 @@ const Mobile = styled.div`
 `;
 type Props = {
   stickyFixed: boolean;
+  isMobileNavigation: boolean;
+  showMobileNavigation: () => void;
 };
-export const Header = ({ stickyFixed }: Props) => {
+export const Header = ({
+  stickyFixed,
+  showMobileNavigation,
+  isMobileNavigation
+}: Props) => {
   return (
     <Container isActive={stickyFixed}>
       <Desktop>
-        <NavLink>Home</NavLink>
-        <NavLink>Programma</NavLink>
-        <NavLink>Lista nozze</NavLink>
+        <Scrollchor
+          to="home"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <NavLink>Home</NavLink>
+        </Scrollchor>
+        <Scrollchor
+          to="programma"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <NavLink>Programma</NavLink>
+        </Scrollchor>
+        <Scrollchor
+          to="listanozze"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <NavLink>Lista nozze</NavLink>
+        </Scrollchor>
         <NavLink>Musica</NavLink>
-        <NavLink>About us</NavLink>
         <NavLink>Gallery (soon)</NavLink>
       </Desktop>
       <Mobile>
-        <MyIcon
-          name={IconTypes.BURGER_MENU}
-          color={stickyFixed ? __COLORS.PRIMARY : __COLORS.WHITE}
-          style={{
-            width: 45,
-            marginLeft: "auto",
-            marginRight: 15,
-            cursor: "pointer"
+        <div
+          style={{ marginLeft: "auto" }}
+          onClick={() => {
+            showMobileNavigation();
           }}
-        />
+        >
+          <MyIcon
+            name={IconTypes.BURGER_MENU}
+            color={stickyFixed ? __COLORS.PRIMARY : __COLORS.WHITE}
+            style={{
+              width: 45,
+              marginLeft: "auto",
+              marginRight: 15,
+              cursor: "pointer"
+            }}
+          />
+        </div>
       </Mobile>
     </Container>
   );

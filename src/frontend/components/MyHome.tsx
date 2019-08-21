@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 type State = {};
-type Props = {};
+type Props = { id: string };
 
 class MyHome extends Component<Props, State> {
   state = {};
@@ -20,7 +20,7 @@ class MyHome extends Component<Props, State> {
 
   render() {
     return (
-      <Container>
+      <Container id={this.props.id}>
         <Gallery autoPlay={true} />
       </Container>
     );

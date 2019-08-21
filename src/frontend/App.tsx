@@ -15,7 +15,9 @@ import { IconTypes } from "./views/Icon";
 import Modal from "./layout/UI/Modal";
 import MediaQuery from "react-responsive";
 import { DESKTOP_WIDTH } from "./layout/Layout";
-
+// @ts-ignore
+import Scrollchor from "react-scrollchor";
+import MobileNavigation from "./components/MobileNavigation";
 const Container = styled.div``;
 
 type StickyType = {
@@ -26,17 +28,23 @@ type State = {
   stickyFixed: boolean;
   selectedPackage: null | Package;
   isOpen: boolean;
+  isMobileNavigation: boolean;
 };
 
 class App extends Component<{}, State> {
   state = {
     stickyFixed: false,
     selectedPackage: null,
-    isOpen: false
+    isOpen: false,
+    isMobileNavigation: false
   };
 
   updatePackage(selectedPackage: Package) {
     this.setState({ selectedPackage, isOpen: true });
+  }
+  toggleMobileNavigation() {
+    const isMobileNavigation = !this.state.isMobileNavigation;
+    this.setState({ isMobileNavigation });
   }
   render() {
     return (
@@ -48,7 +56,12 @@ class App extends Component<{}, State> {
             this.setState({ isOpen: false });
           }}
         />
-
+        <MobileNavigation
+          isMobileNavigation={this.state.isMobileNavigation}
+          showMobileNavigation={() => {
+            this.toggleMobileNavigation();
+          }}
+        />
         <Sticky
           top={0}
           innerZ={9999}
@@ -61,9 +74,15 @@ class App extends Component<{}, State> {
             }
           }}
         >
-          <Header stickyFixed={this.state.stickyFixed} />
+          <Header
+            stickyFixed={this.state.stickyFixed}
+            isMobileNavigation={this.state.isMobileNavigation}
+            showMobileNavigation={() => {
+              this.toggleMobileNavigation();
+            }}
+          />
         </Sticky>
-        <MyHome />
+        <MyHome id="home" />
         <SplitSection
           color={__COLORS.TERTRIARY}
           background={__COLORS.PRIMARY}
@@ -71,7 +90,7 @@ class App extends Component<{}, State> {
           iconName={IconTypes.WEDDING_DAY}
         />
         <Fade left>
-          <Section id={"programma"} title={"Programma"}>
+          <Section id="programma" title={"Programma"}>
             <Programma />
           </Section>
         </Fade>
@@ -86,7 +105,7 @@ class App extends Component<{}, State> {
             if (matches) {
               return (
                 <Fade right>
-                  <Section id={"listanozze"} title={"Lista Nozze"}>
+                  <Section id="listanozze" title={"Lista Nozze"}>
                     <ListaNozze
                       onSelectPackage={(selectedPackage: Package) => {
                         this.updatePackage(selectedPackage);
@@ -97,7 +116,7 @@ class App extends Component<{}, State> {
               );
             } else {
               return (
-                <Section id={"listanozze"} title={"Lista Nozze"}>
+                <Section id="listanozze" title={"Lista Nozze"}>
                   <ListaNozze
                     onSelectPackage={(selectedPackage: Package) => {
                       this.updatePackage(selectedPackage);
@@ -108,7 +127,6 @@ class App extends Component<{}, State> {
             }
           }}
         </MediaQuery>
-
         <Fade right delay={30} />
         <Footer />
       </Container>
