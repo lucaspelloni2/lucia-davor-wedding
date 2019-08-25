@@ -13,6 +13,7 @@ import {
   MEDIUM_DEVICES,
   SMALL_DEVICES
 } from "../layout/Mobile";
+import { LuciaDavorMessage } from "../views/LuciaDavorMessage";
 
 const Container = styled.div`
   display: flex;
@@ -36,35 +37,6 @@ const Packages = styled.div`
   ${EXTRA_SMALL_DEVICES`
     grid-template-columns: repeat(1, 1fr);
   `};
-`;
-
-const SpanContainer = styled.div`
-  display: flex;
-  align-items: center;
-  border: 1px solid ${__GRAY_SCALE._200};
-  padding: 1rem;
-  border-radius: 7px;
-  margin-bottom: 30px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0 20px;
-  ${EXTRA_SMALL_DEVICES`
-    flex-direction: column;
-    text-align: center;
-  `};
-`;
-
-const Avatar = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin: 0 15px;
-  ${EXTRA_SMALL_DEVICES`
-    margin-bottom: 15px;
-  `};
-`;
-
-const Span = styled.span`
-  color: ${__COLORS.TERTRIARY};
-  line-height: 1.4;
 `;
 
 export type Package = {
@@ -103,19 +75,16 @@ class ListaNozze extends React.Component<Props, {}> {
     return (
       <Container>
         {error && <h3>Something went wrong.</h3>}
-        <SpanContainer>
-          <Avatar src="assets/images/avatar.jpg" />
-          <Span>
-            Il regalo più bello per noi è quello di poter festeggiare il nostro
-            matrimonio circondati dall’affetto di tutte le persone che ci stanno
-            più a cuore! Tuttavia, nel caso aveste il piacere di farci un regalo
-            di nozze, qui sotto troverete alcune proposte per contribuire alla
-            nostra luna di miele. Qualora aveste un’idea per un regalo che non
-            si trovasse nella lista, potete tranquillamente versare l’importo al
-            nostro conto con la descrizione del regalo o accompagnarci
-            personalmente ad acquistarlo!
-          </Span>
-        </SpanContainer>
+        <LuciaDavorMessage>
+          Il regalo più bello per noi è quello di poter festeggiare il nostro
+          matrimonio circondati dall’affetto di tutte le persone che ci stanno
+          più a cuore! Tuttavia, nel caso aveste il piacere di farci un regalo
+          di nozze, qui sotto troverete alcune proposte per contribuire alla
+          nostra luna di miele. Qualora aveste un’idea per un regalo che non si
+          trovasse nella lista, potete tranquillamente versare l’importo al
+          nostro conto con la descrizione del regalo o accompagnarci
+          personalmente ad acquistarlo!
+        </LuciaDavorMessage>
 
         {packages.length > 0 && (
           <Packages>

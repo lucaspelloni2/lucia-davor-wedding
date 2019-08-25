@@ -15,9 +15,8 @@ import { IconTypes } from "./views/Icon";
 import Modal from "./layout/UI/Modal";
 import MediaQuery from "react-responsive";
 import { DESKTOP_WIDTH } from "./layout/Layout";
-// @ts-ignore
-import Scrollchor from "react-scrollchor";
 import MobileNavigation from "./components/MobileNavigation";
+
 const Container = styled.div``;
 
 type StickyType = {
@@ -104,13 +103,13 @@ class App extends Component<{}, State> {
           {matches => {
             if (matches) {
               return (
-                  <Section id="listanozze" title={"Lista Nozze"}>
-                    <ListaNozze
-                      onSelectPackage={(selectedPackage: Package) => {
-                        this.updatePackage(selectedPackage);
-                      }}
-                    />
-                  </Section>
+                <Section id="listanozze" title={"Lista Nozze"}>
+                  <ListaNozze
+                    onSelectPackage={(selectedPackage: Package) => {
+                      this.updatePackage(selectedPackage);
+                    }}
+                  />
+                </Section>
               );
             } else {
               return (

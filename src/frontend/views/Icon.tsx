@@ -39,7 +39,8 @@ export enum IconTypes {
   PICTURE = "PICTURE",
   BURGER_MENU = "BURGER_MENU",
   WEDDING_LIST = "WEDDING_LIST",
-  WEDDING_DAY = "WEDDING_DAY"
+  WEDDING_DAY = "WEDDING_DAY",
+    ARROW = "ARROW"
 }
 
 const MyIcon = ({ name, ...otherProps }: IconProps) => {
@@ -248,6 +249,16 @@ const MyIcon = ({ name, ...otherProps }: IconProps) => {
               </svg>
             </g>
           </g>
+        </Icon>
+      );
+
+    case IconTypes.ARROW:
+      return (
+        <Icon {...otherProps} viewBox="0 0 100 100" x="0px" y="0px">
+          <polygon points="66.57 33.74 77.85 45 46.21 45 45.99 45 40.21 45 40.21 55 45.99 55 46.21 55 77.85 55 66.57 66.26 73.64 73.34 97.01 50 73.64 26.66 66.57 33.74" />
+          <rect x="28.21" y="45" width="6" height="10" />
+          <rect x="16.21" y="45" width="6" height="10" />
+          <rect x="4.21" y="45" width="6" height="10" />
         </Icon>
       );
     default:

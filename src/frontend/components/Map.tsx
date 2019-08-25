@@ -25,7 +25,7 @@ class Map extends Component {
       lat: 59.95,
       lng: 30.33
     },
-    zoom: 11
+    zoom: 0
   };
 
   render() {
@@ -37,13 +37,13 @@ class Map extends Component {
             bootstrapURLKeys={{
               key: "AIzaSyAKVNh-hY3u16NrHXFfFLeHRa0undnjSJM"
             }}
-            defaultZoom={15}
+            defaultZoom={14}
             defaultCenter={{
-              lat: 46.00507,
-              lng: 8.95645
+              lat: 46.00629,
+              lng: 8.96463
             }}
           >
-            <Image lat={46.00356} lng={8.9512} source={"municipio.jpg"} />
+            <Image lat={46.001220} lng={8.978060} source={"municipio.jpg"} />
             <Image lat={46.00507} lng={8.95645} source={"parcocian.jpeg"} />
             <Image lat={46.00629} lng={8.96463} source={"villa.jpg"} />
           </GoogleMapReact>
