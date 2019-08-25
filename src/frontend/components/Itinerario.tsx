@@ -4,6 +4,7 @@ import { __COLORS, __GRAY_SCALE } from "../layout/Theme";
 import { getAlphaColor } from "../helpers/AlphaColor";
 import MyImage, { AssetType } from "../views/Figure";
 import MyIcon, { IconTypes } from "../views/Icon";
+import { EXTRA_SMALL_DEVICES } from "../layout/Mobile";
 
 export type Itinerary = {
   startTime: string;
@@ -38,7 +39,8 @@ let data: Itinerary[] = [
     description:
       "Trasferimento per Villa Castagnola, incluso giro per la città di Lugano",
     picture: "parcocian.jpeg",
-    address: "https://www.google.com/maps/place/Parco+Ciani/@46.0052122,8.9558402,17z/data=!3m1!4b1!4m5!3m4!1s0x47842d8c95d06a1d:0xa3e1c8073068b40d!8m2!3d46.0052085!4d8.9580289"
+    address:
+      "https://www.google.com/maps/place/Parco+Ciani/@46.0052122,8.9558402,17z/data=!3m1!4b1!4m5!3m4!1s0x47842d8c95d06a1d:0xa3e1c8073068b40d!8m2!3d46.0052085!4d8.9580289"
   },
   {
     startTime: "> 17:00",
@@ -62,6 +64,9 @@ const HourContainer = styled.div`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
+  ${EXTRA_SMALL_DEVICES`
+    flex: 2;
+  `};
 `;
 const Hour = styled.span`
   font-size: 20px;

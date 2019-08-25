@@ -50,6 +50,13 @@ const Ul = styled.ul`
   padding-left: 30px;
 `;
 
+const Li = styled.li`
+  ${EXTRA_SMALL_DEVICES`
+        list-style-type: none; 
+        margin-top: 15px;
+    `};
+`;
+
 type Props = {};
 
 export const Programma = () => {
@@ -59,9 +66,9 @@ export const Programma = () => {
         <Destination>
           <Title>Come raggiungerci?</Title>
           <Ul>
-            <li>
+            <Li>
               <strong>Con i mezzi pubblici</strong>
-            </li>
+            </Li>
             Per arrivare a Villa Castagnola, prendete{" "}
             <a
               style={{ color: __COLORS.TERTRIARY, fontWeight: "bold" }}
@@ -71,9 +78,9 @@ export const Programma = () => {
               il Bus numero 2{" "}
             </a>
             fino alla fermata Cassarate, Monte Bré.
-            <li>
+            <Li>
               <strong>Con l’auto</strong>
-            </li>
+            </Li>
             Vi consigliamo di posteggiare la vostra auto presso Villa
             Castagnola. In seguito, da e per l’Ex Municipio, abbiamo organizzato
             per voi i trasferimenti, per cui non avrete più bisogno della
