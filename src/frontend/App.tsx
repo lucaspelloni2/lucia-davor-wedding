@@ -103,13 +103,15 @@ class App extends Component<{}, State> {
           {matches => {
             if (matches) {
               return (
-                <Section id="listanozze" title={"Lista Nozze"}>
-                  <ListaNozze
-                    onSelectPackage={(selectedPackage: Package) => {
-                      this.updatePackage(selectedPackage);
-                    }}
-                  />
-                </Section>
+                <Fade right>
+                  <Section id="listanozze" title={"Lista Nozze"}>
+                    <ListaNozze
+                      onSelectPackage={(selectedPackage: Package) => {
+                        this.updatePackage(selectedPackage);
+                      }}
+                    />
+                  </Section>
+                </Fade>
               );
             } else {
               return (

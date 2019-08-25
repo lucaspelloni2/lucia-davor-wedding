@@ -17,6 +17,8 @@ import { Dispatch } from "redux";
 import { fetchPackages } from "../../reducers/packages/actions";
 import LottieManager from "../../components/LottieManager";
 import { EXTRA_SMALL_DEVICES } from "../Mobile";
+import MediaQuery from "react-responsive";
+import { DESKTOP_WIDTH } from "../Layout";
 
 const Parent = styled.div<{ isOpen: boolean }>`
   position: fixed;
@@ -45,7 +47,7 @@ const Container = styled.div`
   max-width: 50%;
   ${EXTRA_SMALL_DEVICES`
     min-height: 100%;
-    padding: 20px 35px;
+    padding: 5px 20px 5px 20px;
     max-width: 100%;
     min-width: 100%;
   `};
@@ -54,7 +56,6 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  min-height: 60px;
   ${EXTRA_SMALL_DEVICES`
        flex-direction: column;
    `};
@@ -69,6 +70,8 @@ const Title = styled.h1`
   ${EXTRA_SMALL_DEVICES`
     padding: 10px;
        text-align: center;
+           background: white;
+    z-index: 10000;
        margin: 0 0 -15px 0;
    `};
 `;
@@ -106,7 +109,7 @@ const Body = styled.div`
   color: ${__COLORS.TERTRIARY};
   overflow: scroll;
   ${EXTRA_SMALL_DEVICES`
-        padding: 20px;
+           padding: 10px 20px 10px 20px;
   `};
 `;
 
@@ -131,7 +134,7 @@ const Footer = styled.div`
   padding: 5px 0 25px 0;
   align-self: center;
   ${EXTRA_SMALL_DEVICES`
-      padding: 5px 0 40px 0;
+      padding: 5px 0 20px 0;
   `};
 `;
 
@@ -219,7 +222,7 @@ const Lottie = styled.div``;
 const ThanksContainer = styled.div`
   max-width: 500px;
   ${EXTRA_SMALL_DEVICES`
-        padding: 20px;
+        padding: 5px 20px 5px 20px;
   `};
 `;
 
@@ -229,6 +232,9 @@ const SubTitle = styled.h3`
   text-align: justify;
   font-size: 16px;
   font-style: italic;
+  ${EXTRA_SMALL_DEVICES`
+  font-size: 14px;
+    `};
 `;
 
 const SliderContainer = styled.div`
@@ -239,6 +245,7 @@ const CaroTitle = styled(Title)`
   margin: 0 20px 0 0;
   ${EXTRA_SMALL_DEVICES`
     margin: 0
+    font-size: 16px;
    `};
 `;
 
@@ -359,15 +366,35 @@ class Modal extends Component<Props, State> {
               <Body>
                 {this.state.isContributionCompleted ? (
                   <Lottie>
-                    <LottieManager
-                      animationData={animationData}
-                      height={330}
-                      width={330}
-                      loop={false}
-                      onComplete={() => {
-                        console.log("completed!");
+                    <MediaQuery minWidth={DESKTOP_WIDTH}>
+                      {matches => {
+                        if (matches) {
+                          return (
+                            <LottieManager
+                              animationData={animationData}
+                              height={330}
+                              width={330}
+                              loop={false}
+                              onComplete={() => {
+                                console.log("completed!");
+                              }}
+                            />
+                          );
+                        } else {
+                          return (
+                            <LottieManager
+                              animationData={animationData}
+                              height={150}
+                              width={150}
+                              loop={false}
+                              onComplete={() => {
+                                console.log("completed!");
+                              }}
+                            />
+                          );
+                        }
                       }}
-                    />
+                    </MediaQuery>
                   </Lottie>
                 ) : (
                   <>
@@ -434,18 +461,17 @@ class Modal extends Component<Props, State> {
                       Caro <strong>{this.state.email},</strong>
                     </CaroTitle>
                     <SubTitle>
-                      grazie mille per aver regalato a Lucia questo fantastico
-                      regalo! Al fin di poter versare l'importo di{" "}
+                      Grazie mille :)Al fin di poter versare l'importo di{" "}
                       <strong>CHF {this.state.contribution}</strong>, riceverai
                       una email di conferma a breve (in caso non dovesse
-                      arrivare, controlla nello spam).
+                      arrivare, controlla nello spam o contatta Lucas).
                     </SubTitle>
                     <ContinueShoppingButton
                       onClick={() => {
                         this.props.close();
                       }}
                     >
-                      Ti senti generoso? Continua a regalare!
+                      Grazie :)
                     </ContinueShoppingButton>
                   </ThanksContainer>
                 ) : (
