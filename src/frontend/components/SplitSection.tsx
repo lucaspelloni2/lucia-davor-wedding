@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styled from "styled-components";
 import { __COLORS, __GRAY_SCALE } from "../layout/Theme";
 import { Parallax } from "react-scroll-parallax/cjs";
@@ -35,15 +35,26 @@ type Props = {
   color: __COLORS;
   iconName: IconTypes;
   text: string;
+  iconWidth?: number;
 };
 
-const SplitSection = ({ background, text, iconName, color }: Props) => {
+const SplitSection = ({
+  background,
+  text,
+  iconName,
+  color,
+  iconWidth
+}: Props) => {
   return (
     <Container background={background}>
       <Parallax className="splitSection" y={[-20, 20]} tagOuter="div">
         <Element>
           <Text color={color}>{text}</Text>
-          <Icon name={iconName} color={color} style={{ width: 300 }} />
+          <Icon
+            name={iconName}
+            color={color}
+            style={{ width: iconWidth || 300 }}
+          />
         </Element>
       </Parallax>
     </Container>

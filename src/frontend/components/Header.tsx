@@ -85,6 +85,12 @@ export const Header = ({
         >
           <NavLink>Lista nozze</NavLink>
         </Scrollchor>
+        <Scrollchor
+          to="musica"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          <NavLink>Musica</NavLink>
+        </Scrollchor>
         <NavLink>Gallery (coming soon)</NavLink>
       </Desktop>
       <Mobile>

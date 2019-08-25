@@ -57,6 +57,7 @@ export const GlobalStyle = createGlobalStyle<{
   theme: ThemeProviderProps<any>;
 }>`
   @import url(${MainTheme.googleUrl});
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
   html {
     font-family: ${(p: ThemeProviderProps<any>) => p.theme.fontFamily};
   }

@@ -16,6 +16,7 @@ import Modal from "./layout/UI/Modal";
 import MediaQuery from "react-responsive";
 import { DESKTOP_WIDTH } from "./layout/Layout";
 import MobileNavigation from "./components/MobileNavigation";
+import { Musica } from "./components/Musica";
 
 const Container = styled.div``;
 
@@ -126,6 +127,16 @@ class App extends Component<{}, State> {
             }
           }}
         </MediaQuery>
+        <SplitSection
+          background={__COLORS.SECONDARY}
+          color={__COLORS.WHITE}
+          text={"Chi vuole ballare?"}
+          iconName={IconTypes.MUSICA}
+          iconWidth={190}
+        />
+        <Section id="musica" title={"Musica"}>
+          <Musica />
+        </Section>
         <Footer />
       </Container>
     );

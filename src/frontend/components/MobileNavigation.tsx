@@ -101,6 +101,18 @@ const MobileNavigation = ({
             >
               Lista Nozze
             </Nav>
+          </Scrollchor>{" "}
+          <Scrollchor
+            to="musica"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <Nav
+              onClick={() => {
+                showMobileNavigation();
+              }}
+            >
+              Musica
+            </Nav>
           </Scrollchor>
           <Nav
             onClick={() => {
