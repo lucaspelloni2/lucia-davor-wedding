@@ -25,7 +25,7 @@ const SpotifyButton = styled.div`
 `;
 
 const Logo = styled(MyImage)`
-  height: 50px;
+  height: 35px;
   width: auto;
   margin-bottom: 15px;
 `;
@@ -33,7 +33,9 @@ const Link = styled.a`
   text-decoration: none;
 `;
 
-const Span = styled.span``;
+const Span = styled.span`
+font-size: 14px;
+`;
 
 export const Musica = () => {
   return (
