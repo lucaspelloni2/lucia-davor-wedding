@@ -104,7 +104,6 @@ class App extends Component<{}, State> {
           {matches => {
             if (matches) {
               return (
-                <Fade right>
                   <Section id="listanozze" title={"Lista Nozze"}>
                     <ListaNozze
                       onSelectPackage={(selectedPackage: Package) => {
@@ -112,7 +111,6 @@ class App extends Component<{}, State> {
                       }}
                     />
                   </Section>
-                </Fade>
               );
             } else {
               return (

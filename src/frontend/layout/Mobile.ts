@@ -11,7 +11,7 @@ export const EXTRA_SMALL_DEVICES = (...args: any) => css`
 
 export const SMALL_DEVICES = (...args: any) => css`
   /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
+  @media only screen and (max-width: 700px) {
     ${css`
       ${args};
     `};
@@ -20,7 +20,7 @@ export const SMALL_DEVICES = (...args: any) => css`
 
 export const MEDIUM_DEVICES = (...args: any) => css`
   /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
+  @media only screen and (max-width: 768px) {
     ${css`
       ${args};
     `};
@@ -29,7 +29,7 @@ export const MEDIUM_DEVICES = (...args: any) => css`
 
 export const LARGE_DEVICES = (...args: any) => css`
   /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 992px) {
+  @media only screen and (max-width: 992px) {
     ${css`
       ${args};
     `};

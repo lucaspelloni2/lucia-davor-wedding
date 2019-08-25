@@ -51,10 +51,7 @@ const Mobile = styled.div`
         display: flex;
     `};
 
-  ${SMALL_DEVICES`
-        display:none;
-    `};
-
+  display: none;
   flex: 1;
 `;
 type Props = {
@@ -88,8 +85,6 @@ export const Header = ({
         >
           <NavLink>Lista nozze</NavLink>
         </Scrollchor>
-        <NavLink>Musica</NavLink>
-        <NavLink>Gallery (soon)</NavLink>
       </Desktop>
       <Mobile>
         <div

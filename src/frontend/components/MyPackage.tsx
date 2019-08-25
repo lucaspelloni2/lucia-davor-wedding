@@ -12,24 +12,17 @@ const Card = styled.div<{ soldout: boolean }>`
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
       0 10px 10px -5px rgba(0, 0, 0, 0.08);
   }
-
+  width: 100%;
   pointer-events: ${props => (props.soldout ? "none" : "inherit")};
   transition: 0.3s ease-in-out all;
-  flex: 1 0 26%; /* explanation below */
   display: flex;
-  margin: 20px 20px 20px 0;
   flex-direction: column;
   min-height: 500px;
-  max-width: 380px;
   min-width: 250px;
   position: relative;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
-  ${EXTRA_SMALL_DEVICES`
-    flex: 1 0 30%; 
-     margin: 20px 0 20px 0;
-    `};
 `;
 
 const Button = styled.div`
