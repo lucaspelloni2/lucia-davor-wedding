@@ -102,6 +102,13 @@ const MobileNavigation = ({
               Lista Nozze
             </Nav>
           </Scrollchor>
+          <Nav
+            onClick={() => {
+              showMobileNavigation();
+            }}
+          >
+            Gallery (Coming Soon)
+          </Nav>
         </Navs>
       </Container>
     </Parent>

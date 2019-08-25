@@ -126,7 +126,6 @@ class App extends Component<{}, State> {
             }
           }}
         </MediaQuery>
-        <Fade right delay={30} />
         <Footer />
       </Container>
     );

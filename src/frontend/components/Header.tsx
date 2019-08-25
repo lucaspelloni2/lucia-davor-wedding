@@ -85,6 +85,7 @@ export const Header = ({
         >
           <NavLink>Lista nozze</NavLink>
         </Scrollchor>
+        <NavLink>Gallery (coming soon)</NavLink>
       </Desktop>
       <Mobile>
         <div
