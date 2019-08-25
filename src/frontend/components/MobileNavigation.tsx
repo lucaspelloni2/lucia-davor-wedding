@@ -10,8 +10,6 @@ const Parent = styled.div<{ isOpen: boolean }>`
   height: 100vh;
   opacity: ${props => (props.isOpen ? 1 : 0)};
   visibility: ${props => (props.isOpen ? "visible" : "hidden")};
-  transform: ${props =>
-    props.isOpen ? "rotate3d(1,1,1)" : "rotate3d(1,10,1,90deg)"};
 
   transition: 0.5s ease-in-out all;
   z-index: 10000;
@@ -40,7 +38,7 @@ const Navs = styled.div`
 
 const Nav = styled.h2`
   color: ${__COLORS.WHITE};
-  padding: 40px 0 10px 0;
+  padding: 20px;
   text-align: center;
 `;
 
@@ -69,10 +67,40 @@ const MobileNavigation = ({
         </CloseContainer>
         <Navs>
           <Scrollchor
-            to={`#programma}`}
+            to="home"
             style={{ color: "inherit", textDecoration: "none" }}
           >
-            da finire
+            <Nav
+              onClick={() => {
+                showMobileNavigation();
+              }}
+            >
+              Home
+            </Nav>
+          </Scrollchor>
+          <Scrollchor
+            to="programma"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <Nav
+              onClick={() => {
+                showMobileNavigation();
+              }}
+            >
+              Programma
+            </Nav>
+          </Scrollchor>
+          <Scrollchor
+            to="listanozze"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <Nav
+              onClick={() => {
+                showMobileNavigation();
+              }}
+            >
+              Lista Nozze
+            </Nav>
           </Scrollchor>
         </Navs>
       </Container>
