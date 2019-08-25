@@ -132,14 +132,6 @@ class Gallery extends Component<Props, State> {
             </Content>
           </Parallax>
         </div>
-        <div data-src="assets/images/lucia8.jpg">
-          <Parallax className="section" y={[-20, 30]} tagOuter="div">
-            <Content align={"right"}>
-              <Title>Lucia e Davor</Title>
-              <SubTitle>18 Ottobre 2019</SubTitle>
-            </Content>
-          </Parallax>
-        </div>
         <div data-src="assets/images/lucia9.jpg">
           <Parallax className="section" y={[-20, 30]} tagOuter="div">
             <Content align={"right"}>
