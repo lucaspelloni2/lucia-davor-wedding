@@ -8,8 +8,6 @@ import { __COLORS } from "../layout/Theme";
 import { Parallax } from "react-scroll-parallax/cjs";
 import { TrackingIn } from "../layout/UI/Animations/BounceIn";
 
-
-
 const Content = styled.div<{ align: string }>`
   z-index: 100;
   text-align: ${props => props.align};
@@ -90,18 +88,17 @@ class Gallery extends Component<Props, State> {
               <Title>Lucia e Davor</Title>
               <SubTitle>18 Ottobre 2019</SubTitle>
             </Content>
-            s
           </Parallax>
         </div>
 
-        <div data-src="assets/images/lucia2.jpg">
+        {/*        <div data-src="assets/images/lucia2.jpg">
           <Parallax className="section" y={[-20, 30]} tagOuter="div">
             <Content align={"left"}>
               <Title>Lucia e Davor</Title>
               <SubTitle>18 Ottobre 2019</SubTitle>
             </Content>
           </Parallax>
-        </div>
+        </div>*/}
         <div data-src="assets/images/lucia3.jpg">
           <Parallax className="section" y={[-20, 30]} tagOuter="div">
             <Content align={"center"}>
@@ -135,9 +132,17 @@ class Gallery extends Component<Props, State> {
             </Content>
           </Parallax>
         </div>
-        <div data-src="assets/images/lucia7.jpg">
+        <div data-src="assets/images/lucia8.jpg">
           <Parallax className="section" y={[-20, 30]} tagOuter="div">
-            <Content align={"center"}>
+            <Content align={"right"}>
+              <Title>Lucia e Davor</Title>
+              <SubTitle>18 Ottobre 2019</SubTitle>
+            </Content>
+          </Parallax>
+        </div>
+        <div data-src="assets/images/lucia9.jpg">
+          <Parallax className="section" y={[-20, 30]} tagOuter="div">
+            <Content align={"right"}>
               <Title>Lucia e Davor</Title>
               <SubTitle>18 Ottobre 2019</SubTitle>
             </Content>
