@@ -9,6 +9,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 `;
 const SpotifyButton = styled.div`
   color: #1db954;
