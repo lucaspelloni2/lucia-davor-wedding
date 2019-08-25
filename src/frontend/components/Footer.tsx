@@ -4,7 +4,7 @@ import { __COLORS } from "../layout/Theme";
 import MyImage, { AssetType } from "../views/Figure";
 
 const Container = styled.div`
-  min-height: 250px;
+  min-height: 150px;
   background: ${__COLORS.TERTRIARY};
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ const Content = styled.div`
 const Text = styled.span`
   color: ${__COLORS.WHITE};
   font-size: 17px;
-  font-weight: 100;
+  font-weight: bold;
 `;
 
 const Logo = styled(MyImage)`
@@ -30,22 +30,19 @@ const Logo = styled(MyImage)`
   margin: 18px 0;
 `;
 
-const AxelraAddress = styled(Text)`
-  margin: 0;
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.4;
-`;
+const Link = styled.a``;
 
 const Footer = () => {
   return (
     <Container id={"footer"}>
       <Content>
-        <Text>Developed and Designed by</Text>
-        <Logo source={"axelra.png"} assetType={AssetType.LOGO} />
-        <AxelraAddress>Axelra AG</AxelraAddress>
+        <Text>Made with ❤️</Text>
+        <Link href={"https://axelra.com"} target="_blank">
+          <Logo source={"axelra.png"} assetType={AssetType.LOGO} />
+        </Link>
+        {/*        <AxelraAddress>Axelra AG</AxelraAddress>
         <AxelraAddress>Bahnhofstrasse 3</AxelraAddress>
-        <AxelraAddress>8001 Zürich</AxelraAddress>
+        <AxelraAddress>8001 Zürich</AxelraAddress>*/}
       </Content>
     </Container>
   );
