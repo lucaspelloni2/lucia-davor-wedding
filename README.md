@@ -1,60 +1,21 @@
-# Lucky React Starter
+# My Sister's wedding ([https://www.los-bajic.com/](https://www.los-bajic.com/))
 
-## Welcome :)
+Hi! My sister got married in October 2019 (tanti auguri Lucia e Davor <3).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> And what could have been the best gift from my side? 
 
-## External Dependencies (in addition to create-react-app's default)
+I've decided to give her a fully customized web app ([https://www.los-bajic.com/](https://www.los-bajic.com/)) for her wedding.
+The idea is simple, inside the site you can find all the information about the wedding. For instance, how to get to the location, the wedding programme, etc. A link to a Spotify playlist was also integrated. Guest were then able to add their favourite songs to this it. 
 
-- Styled Components
-- Colors
-- React Router
-- Redux and Redux Thunk and Redux Middleware extension
-- gh-pages (for deployment)
 
-## Deployment
-This React Template is meant to be deployed to Netlify. 
-Connect your GitHub app with netlify and allow continuous integration. 
-> https://lucky-react-starter.netlify.com
-## Available Scripts
+> Well, that's it? 
 
-In the project directory, you can run:
+Of course not. In addition to that, people did have the possibility to choose in a dynamic way which presents give them. More people were able to participate in a gift by simply choosing the amount of money they were willing to spend. They were able to put their email addresses, the message they wanted to share and with a slider then define the amount of money they wanted to give. Once the present was submitted, they were notified via email and my sister got a slack notification. 
 
-### `yarn start`
+> Did it work? 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Well, as a result my sister and her husband got a lot of presents. Their wish list shortly before the wedding was almost sold-out! 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+> What's next? 
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I would like to white-label this solution in the future and to deploy it on a sort of wild-card domain concept. Another idea would be to Integrate a payment solution such as Stripe and to have all payments in-app. Let's see :) 
